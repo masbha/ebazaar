@@ -1,8 +1,14 @@
 package presentation.control;
 
+import business.exceptions.BackendException;
+import business.externalinterfaces.Catalog;
+import business.productsubsystem.ProductSubsystemFacade;
+import business.usecasecontrol.ManageProductsController;
 import presentation.data.CatalogPres;
+import presentation.data.DefaultData;
 import presentation.data.ManageProductsData;
 import presentation.data.ProductPres;
+import presentation.gui.AddCatalogPopup;
 import presentation.gui.MaintainCatalogsWindow;
 import presentation.gui.MaintainProductsWindow;
 import presentation.gui.MessageableWindow;
@@ -19,6 +25,7 @@ public enum ManageProductsUIControl {
 
 	private Stage primaryStage;
 	private Callback startScreenCallback;
+	private ManageProductsController mpc = new ManageProductsController();
 
 	public void setPrimaryStage(Stage ps, Callback returnMessage) {
 		primaryStage = ps;
@@ -28,6 +35,7 @@ public enum ManageProductsUIControl {
 	// windows managed by this class
 	MaintainCatalogsWindow maintainCatalogsWindow;
 	MaintainProductsWindow maintainProductsWindow;
+	AddCatalogPopup addCatalogPopup;
 
 	// Manage catalogs
 	private class MaintainCatalogsHandler implements EventHandler<ActionEvent> {
@@ -87,6 +95,45 @@ public enum ManageProductsUIControl {
 	}
 	public BackFromProdsButtonHandler getBackFromProdsButtonHandler() {
 		return new BackFromProdsButtonHandler();
+	}
+	
+	private class AddCatalogsHandler implements EventHandler<ActionEvent> {
+		@Override
+		public void handle(ActionEvent e) {		
+			if (addCatalogPopup.getId().trim().equals("")) {
+				//messageBar.setText("ID field must be nonempty! \n[Type '0' to auto-generate ID.]");
+				addCatalogPopup.setMessageBar("ID field must be nonempty! \n[Type '0' to auto-generate ID.]");
+			}
+			else if (addCatalogPopup.getName().trim().equals("")) {  
+				addCatalogPopup.setMessageBar("Name field must be nonempty!");
+			}
+			else {
+				String idNewVal = addCatalogPopup.getId();
+				if (idNewVal.equals("0")) {
+					idNewVal = DefaultData.generateId(10);
+				}
+				try {
+					Catalog newCat = mpc.createCatalog(Integer.parseInt(idNewVal), addCatalogPopup.getName());
+					mpc.saveCatalog(newCat);
+					CatalogPres catPres = new CatalogPres();
+					catPres.setCatalog(newCat);
+					maintainCatalogsWindow.addItem(catPres);
+					addCatalogPopup.setMessageBar("");
+					addCatalogPopup.hide();
+				} catch (BackendException be) {
+					System.out.println("Catalog save fail:" + be.getMessage());
+				}
+				
+			}	   
+		}
+	}
+	
+	public AddCatalogsHandler getAddCatalogsHandler() {
+		return new AddCatalogsHandler();
+	}
+	
+	public void setAddCatalogWindowInfo(AddCatalogPopup catPopup) {
+		this.addCatalogPopup = catPopup;		 
 	}
 
 

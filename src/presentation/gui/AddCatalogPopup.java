@@ -1,5 +1,6 @@
 package presentation.gui;
 
+import presentation.control.ManageProductsUIControl;
 import presentation.data.CatalogPres;
 import presentation.data.DefaultData;
 import javafx.geometry.Insets;
@@ -80,27 +81,27 @@ public class AddCatalogPopup extends Popup {
 		btnBox.setAlignment(Pos.CENTER);
 		btnBox.getChildren().add(addButton);
 		btnBox.getChildren().add(cancelButton);
-		
-	
-		addButton.setOnAction(evt -> {
-			if(id.getText().trim().equals("")) {
-				messageBar.setText("ID field must be nonempty! \n[Type '0' to auto-generate ID.]");
-			}
-			else if(name.getText().trim().equals("")) messageBar.setText("Name field must be nonempty!");
-			else {
-				String idNewVal = id.getText();
-				if(idNewVal.equals("0")) {
-					idNewVal = DefaultData.generateId(10);
-				}
-				Catalog newCat = ProductSubsystemFacade.createCatalog(
-						Integer.parseInt(idNewVal), name.getText());
-				CatalogPres catPres = new CatalogPres();
-				catPres.setCatalog(newCat);
-				maintainCatalogsWindow.addItem(catPres);
-				messageBar.setText("");
-				hide();
-			}	   
-		});
+		ManageProductsUIControl.INSTANCE.setAddCatalogWindowInfo(this);
+		addButton.setOnAction(ManageProductsUIControl.INSTANCE.getAddCatalogsHandler());
+//		addButton.setOnAction(evt -> {
+//			if(id.getText().trim().equals("")) {
+//				messageBar.setText("ID field must be nonempty! \n[Type '0' to auto-generate ID.]");
+//			}
+//			else if(name.getText().trim().equals("")) messageBar.setText("Name field must be nonempty!");
+//			else {
+//				String idNewVal = id.getText();
+//				if(idNewVal.equals("0")) {
+//					idNewVal = DefaultData.generateId(10);
+//				}
+//				Catalog newCat = ProductSubsystemFacade.createCatalog(
+//						Integer.parseInt(idNewVal), name.getText());
+//				CatalogPres catPres = new CatalogPres();
+//				catPres.setCatalog(newCat);
+//				maintainCatalogsWindow.addItem(catPres);
+//				messageBar.setText("");
+//				hide();
+//			}	   
+//		});
 		cancelButton.setOnAction(evt -> {
 			messageBar.setText("");
 			hide();
@@ -110,5 +111,17 @@ public class AddCatalogPopup extends Popup {
 	}
 	void setBackground(Color color) {
 		topLevel.backgroundProperty().set(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+	}
+	//added three method for accessing
+	public String getId() {
+		return id.getText();
+	}
+	
+	public String getName() {
+		return name.getText();
+	}
+	
+	public void setMessageBar(String msg) {
+		messageBar.setText(msg);
 	}
 }
