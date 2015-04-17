@@ -6,5 +6,5 @@
     (shopcart-template (isEmpty ?z) )
     (test (= ?z TRUE))
      =>    
-    (throw (new rulesengine.ValidationException "To proceed to Checkout, your Shopping Cart must contain at least one item.")))
+    (throw (new rulesengine.ValidationException "To proceed, your Shopping Cart must contain at least one item.")))
     
