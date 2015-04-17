@@ -153,4 +153,10 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 			String expirationDate, String cardNum, String cardType) {
 		return new CreditCardImpl(nameOnCard, expirationDate, cardNum, cardType);
 	}
+
+	@Override
+	public void setShippingAddressInCart(Address addr) {
+		// TODO Auto-generated method stub
+		
+	}
 }

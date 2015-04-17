@@ -81,7 +81,7 @@ public interface CustomerSubsystem {
 //    /** 
 //     *  Stores address as shipping address in this customer's shopping cart 
 //	 */
-//    public void setShippingAddressInCart(Address addr);
+    public void setShippingAddressInCart(Address addr);
 //    
 //    /** 
 //     * Stores address as billing address in this customer's shopping cart 
