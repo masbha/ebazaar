@@ -4,8 +4,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/workdpace/externalJars/creditVerifSystem.jar"/>
 	<classpathentry kind="lib" path="C:/workdpace/externalJars/jess.jar"/>
+	<classpathentry kind="lib" path="C:/workdpace/externalJars/junit.jar"/>
 	<classpathentry kind="lib" path="C:/workdpace/externalJars/mysql-connector-java-5.1.20-bin.jar"/>
 	<classpathentry kind="lib" path="C:/workdpace/externalJars/rulesencoding.jar"/>
 	<classpathentry kind="lib" path="C:/workdpace/externalJars/rulesengine.jar"/>
+	<classpathentry kind="lib" path="C:/workdpace/externalJars/slf4j-api-1.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/workdpace/externalJars/slf4j-jdk14-1.7.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

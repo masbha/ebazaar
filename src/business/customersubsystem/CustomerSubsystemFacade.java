@@ -11,6 +11,7 @@ import business.externalinterfaces.Address;
 import business.externalinterfaces.CreditCard;
 import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.CustomerSubsystem;
+import business.externalinterfaces.DbClassAddressForTest;
 import business.externalinterfaces.Order;
 import business.externalinterfaces.OrderSubsystem;
 import business.externalinterfaces.Rules;
@@ -158,5 +159,65 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	public void setShippingAddressInCart(Address addr) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Order> getOrderHistory() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setBillingAddressInCart(Address addr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPaymentInfoInCart(CreditCard cc) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void submitOrder() throws BackendException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void refreshAfterSubmit() throws BackendException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ShoppingCartSubsystem getShoppingCart() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveShoppingCart() throws BackendException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void checkCreditCard(CreditCard cc) throws BusinessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public DbClassAddressForTest getGenericDbClassAddress() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CustomerProfile getGenericCustomerProfile() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
