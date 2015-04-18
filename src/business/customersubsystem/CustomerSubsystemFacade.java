@@ -29,6 +29,7 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	CustomerProfileImpl customerProfile;
 	
 	
+	
 	/** Use for loading order history,
 	 * default addresses, default payment info, 
 	 * saved shopping cart,cust profile
@@ -58,9 +59,13 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
     }
     void loadDefaultShipAddress() throws BackendException {
     	//implement
+    	DbClassAddress dbAddress=new DbClassAddress();
+    	defaultShipAddress= dbAddress.getDefaultShipAddress();
     }
 	void loadDefaultBillAddress() throws BackendException {
 		//implement
+		DbClassAddress dbAddress=new DbClassAddress();
+    	defaultBillAddress= dbAddress.getDefaultBillAddress();
 	}
 	void loadDefaultPaymentInfo() throws BackendException {
 		//implement
