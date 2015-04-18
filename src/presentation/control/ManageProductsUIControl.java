@@ -1,23 +1,26 @@
 package presentation.control;
 
-import business.exceptions.BackendException;
-import business.externalinterfaces.Catalog;
-import business.productsubsystem.ProductSubsystemFacade;
-import business.usecasecontrol.ManageProductsController;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.stage.Stage;
 import presentation.data.CatalogPres;
 import presentation.data.DefaultData;
 import presentation.data.ManageProductsData;
 import presentation.data.ProductPres;
 import presentation.gui.AddCatalogPopup;
+import presentation.gui.AddProductPopup;
 import presentation.gui.MaintainCatalogsWindow;
 import presentation.gui.MaintainProductsWindow;
-import presentation.gui.MessageableWindow;
-import presentation.gui.TableUtil;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.MenuItem;
-import javafx.stage.Stage;
+import business.exceptions.BackendException;
+import business.exceptions.BusinessException;
+import business.externalinterfaces.Catalog;
+import business.externalinterfaces.Product;
+import business.productsubsystem.ProductSubsystemFacade;
+import business.usecasecontrol.ManageProductsController;
 
 
 public enum ManageProductsUIControl {
@@ -36,6 +39,7 @@ public enum ManageProductsUIControl {
 	MaintainCatalogsWindow maintainCatalogsWindow;
 	MaintainProductsWindow maintainProductsWindow;
 	AddCatalogPopup addCatalogPopup;
+	AddProductPopup addProductPopup;
 
 	// Manage catalogs
 	private class MaintainCatalogsHandler implements EventHandler<ActionEvent> {
@@ -101,7 +105,6 @@ public enum ManageProductsUIControl {
 		@Override
 		public void handle(ActionEvent e) {		
 			if (addCatalogPopup.getId().trim().equals("")) {
-				//messageBar.setText("ID field must be nonempty! \n[Type '0' to auto-generate ID.]");
 				addCatalogPopup.setMessageBar("ID field must be nonempty! \n[Type '0' to auto-generate ID.]");
 			}
 			else if (addCatalogPopup.getName().trim().equals("")) {  
@@ -121,7 +124,8 @@ public enum ManageProductsUIControl {
 					addCatalogPopup.setMessageBar("");
 					addCatalogPopup.hide();
 				} catch (BackendException be) {
-					System.out.println("Catalog save fail:" + be.getMessage());
+					addCatalogPopup.setMessageBar("Catalog saving fails");
+					System.out.println("Catalog save fail : " + be.getMessage());
 				}
 				
 			}	   
@@ -132,10 +136,57 @@ public enum ManageProductsUIControl {
 		return new AddCatalogsHandler();
 	}
 	
+	private class AddProductPopupHandler implements EventHandler<ActionEvent> {
+		@Override
+		public void handle(ActionEvent e) {		
+			//Rules should be managed in a more maintainable way
+			if(addProductPopup.getId().trim().equals("")) {
+				addProductPopup.setMessageBar("Product Id field must be nonempty! \n[Type '0' to auto-generate ID.]");
+			}
+			else if(addProductPopup.getName().trim().equals("")) addProductPopup.setMessageBar("Product Name field must be nonempty!");
+			else if(addProductPopup.getManufactureDate().trim().equals("")) addProductPopup.setMessageBar("Manufacture Date field must be nonempty!");
+			else if(addProductPopup.getNumAvail().trim().equals("")) addProductPopup.setMessageBar("Number in Stock field must be nonempty!");
+			else if(addProductPopup.getUnitPrice().trim().equals("")) addProductPopup.setMessageBar("Unit Price field must be nonempty!");
+			else if(addProductPopup.getDescription().trim().equals("")) addProductPopup.setMessageBar("Description field must be nonempty!");
+			else {
+				Product newProd = null;
+				String idNewVal = addProductPopup.getId();
+				if(idNewVal.equals("0")) {
+					idNewVal = DefaultData.generateId(100);
+				} //Catalog c, Integer pi, String pn, int qa, double up, LocalDate md, String d
+				try {
+					Catalog catalog = mpc.getCatalog(addProductPopup.getCatalogName());
+					newProd = mpc.createProduct(catalog, 
+							Integer.parseInt(addProductPopup.getId()), addProductPopup.getName(), Integer.parseInt(addProductPopup.getNumAvail()), 
+							    Double.parseDouble(addProductPopup.getUnitPrice()), LocalDate.parse(addProductPopup.getManufactureDate(), DateTimeFormatter.ofPattern("MM/dd/yyyy")), 
+							    addProductPopup.getDescription());
+					
+					mpc.saveProduct(newProd);
+					
+				} catch (BusinessException be) {
+					
+				}
+				
+				ProductPres prodPres = new ProductPres();
+				prodPres.setProduct(newProd);
+				maintainProductsWindow.addItem(prodPres);
+				addProductPopup.setMessageBar("");
+				addProductPopup.hide();
+			}	  	   
+		}
+	}
+	
+	public AddProductPopupHandler getAddProductPopupHandler() {
+		return new AddProductPopupHandler();
+	}
+	
 	public void setAddCatalogWindowInfo(AddCatalogPopup catPopup) {
 		this.addCatalogPopup = catPopup;		 
 	}
-
+	
+	public void setAddProductWindowInfo(AddProductPopup productPopup) {
+		this.addProductPopup = productPopup;		
+	}
 
 	/*
 	 * private MenuItem maintainCatalogs() { MenuItem retval = new

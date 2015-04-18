@@ -1,6 +1,7 @@
 
 package business.usecasecontrol;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -39,9 +40,25 @@ public class ManageProductsController   {
     	return ProductSubsystemFacade.createCatalog(id, name);
     }
     
-    public List<Catalog> getCatalogList() throws BackendException {
-    	ProductSubsystem pss = new ProductSubsystemFacade();    	
-    	return pss.getCatalogList();
+    public List<Catalog> getCatalogs() throws BackendException {
+		ProductSubsystem pss = new ProductSubsystemFacade();
+		return pss.getCatalogList();
+	}
+    
+    public Catalog getCatalog(String catName) throws BackendException {
+    	ProductSubsystem pss = new ProductSubsystemFacade();
+    	return pss.getCatalogFromName(catName);
+    }
+    
+    public Product createProduct(Catalog c, Integer pi, String pn, int qa, 
+			double up, LocalDate md, String desc) {    	
+    	return ProductSubsystemFacade.createProduct(c, pi, pn, qa, up, md, desc);
+    }
+    
+    public void saveProduct(Product product) throws BackendException {
+    	ProductSubsystem pss = new ProductSubsystemFacade();
+		pss.saveNewProduct(product);
+    	
     }
     
 }

@@ -73,7 +73,16 @@ class DbClassProduct implements DbClass {
 	}
 
 	private void buildSaveNewQuery() {
-		//implement
+		//TO DO: change manufacture date in appropriate layer
+		query = "INSERT into product "+
+				"(productid,catalogid,productname,totalquantity,priceperunit,mfgdate,description) " +
+				"VALUES(NULL,'"+
+						  product.getCatalog().getId() +"', '"+
+						  product.getProductName() +"','"+
+						  product.getQuantityAvail() +"','"+
+						  product.getUnitPrice() +"','"+
+						  GuiUtils.localDateAsString(product.getMfgDate()) +"','"+
+						  product.getDescription() +"')"; 
 	}
 
 	public TwoKeyHashMap<Integer, String, Product> readProductTable()
@@ -134,7 +143,10 @@ class DbClassProduct implements DbClass {
 //	}
 	
 	public void saveNewProduct(Product product) throws DatabaseException {
-		//implement
+		//TODO: may need to change
+		this.product = product;
+    	queryType = SAVE_NEW_PROD;
+    	dataAccessSS.saveWithinTransaction(this);  
 	}
 
 	public void populateEntity(ResultSet resultSet) throws DatabaseException {
@@ -147,7 +159,11 @@ class DbClassProduct implements DbClass {
 		}
 	}
 	
-	
+	public List<Product> loadProductTable() throws DatabaseException {
+		queryType = LOAD_PROD_TABLE;
+		dataAccessSS.atomicRead(this);
+		return productList;
+	}
 
 	private void populateProdList(ResultSet rs) throws DatabaseException {
 		productList = new LinkedList<Product>();

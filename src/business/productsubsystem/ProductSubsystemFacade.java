@@ -75,7 +75,15 @@ public class ProductSubsystemFacade implements ProductSubsystem {
 	
 	@Override
 	public Catalog getCatalogFromName(String catName) throws BackendException {
-		return ProductSubsystemFacade.createCatalog(15, catName);
+		//TODO: may need to refactor
+		try {
+			DbClassCatalogTypes dbClass = new DbClassCatalogTypes();
+			int id = dbClass.getCatalogTypes().getCatalogId(catName);
+			return ProductSubsystemFacade.createCatalog(id, catName);
+		} catch(DatabaseException e) {
+			throw new BackendException(e);
+		}
+		
 	}
 	
 	@Override
@@ -91,7 +99,7 @@ public class ProductSubsystemFacade implements ProductSubsystem {
 	
 	@Override
 	public void saveNewProduct(Product product) throws BackendException {
-		//TODO:need to change
+		//TODO:may need to change
 		try {
 			DbClassProduct dbclass = new DbClassProduct();
 			dbclass.saveNewProduct(product);
@@ -112,4 +120,5 @@ public class ProductSubsystemFacade implements ProductSubsystem {
 		// TODO Auto-generated method stub
 		
 	}
+
 }
