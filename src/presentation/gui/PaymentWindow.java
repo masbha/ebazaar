@@ -100,11 +100,11 @@ public class PaymentWindow extends Stage implements MessageableWindow {
 	}
 	
 	private void loadDefaultData() {
-		List<String> defaultPaymentInfo = CheckoutData.INSTANCE.getDefaultPaymentInfo();
-		nameOnCardField.setText(defaultPaymentInfo.get(0));
-        cardNumberField.setText(defaultPaymentInfo.get(1)); 
-        cardTypeField.setValue(defaultPaymentInfo.get(2)); 
-        expirationField.setText(defaultPaymentInfo.get(3));
+		CreditCard defaultPaymentInfo = CheckoutData.INSTANCE.getDefaultPaymentInfo();
+		nameOnCardField.setText(defaultPaymentInfo.getNameOnCard());
+        cardNumberField.setText(defaultPaymentInfo.getCardNum()); 
+        cardTypeField.setValue(defaultPaymentInfo.getCardType()); 
+        expirationField.setText(defaultPaymentInfo.getExpirationDate());
 	}
 	private HBox setUpButtons() {
 		Button proceedButton = new Button("Checkout");

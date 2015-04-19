@@ -9,6 +9,7 @@ import business.externalinterfaces.Address;
 import business.externalinterfaces.CreditCard;
 import business.externalinterfaces.CustomerProfile;
 import business.usecasecontrol.BrowseAndSelectController;
+import business.usecasecontrol.CheckoutController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import presentation.gui.GuiConstants;
@@ -64,20 +65,15 @@ public enum CheckoutData {
 		return GuiConstants.CREDIT_CARD_TYPES;
 	}
 	public Address getDefaultShippingData() {
-		//implement
-		List<String> add = DefaultData.DEFAULT_SHIP_DATA;
-		return CustomerSubsystemFacade.createAddress(add.get(0), add.get(1), 
-				add.get(2), add.get(3), true, false);
+		return CheckoutController.INSTANCE.getDefaultShippingAddress();
 	}
 	
 	public Address getDefaultBillingData() {
-		List<String> add =  DefaultData.DEFAULT_BILLING_DATA;
-		return CustomerSubsystemFacade.createAddress(add.get(0), add.get(1), 
-				add.get(2), add.get(3), false, true);
+		return CheckoutController.INSTANCE.getDefaultBillingAddress();
 	}
 	
-	public List<String> getDefaultPaymentInfo() {
-		return DefaultData.DEFAULT_PAYMENT_INFO;
+	public CreditCard getDefaultPaymentInfo() {
+		return CheckoutController.INSTANCE.getDefaultPaymentInfo();
 	}
 	
 	

@@ -87,51 +87,53 @@ public enum ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 
 	@Override
 	public void clearLiveCart() {
-		// TODO Auto-generated method stub
+		liveCart.clearCart();
 		
 	}
 
 	@Override
 	public List<CartItem> getLiveCartItems() {
-		// TODO method stub
-		List<CartItem> cartItems = new ArrayList<CartItem>();
-		cartItems.add(getEmptyCartItemForTest());
-		return cartItems;
+		return liveCart.getCartItems();
 	}
 
 	@Override
 	public void setShippingAddress(Address addr) {
-		// TODO Auto-generated method stub
+		liveCart.setShipAddress(addr);
 		
 	}
 
 	@Override
 	public void setBillingAddress(Address addr) {
-		// TODO Auto-generated method stub
+		liveCart.setBillAddress(addr);
 		
 	}
 
 	@Override
 	public void setPaymentInfo(CreditCard cc) {
-		// TODO Auto-generated method stub
+		liveCart.setPaymentInfo(cc);
 		
 	}
 
 	@Override
 	public void saveLiveCart() throws BackendException {
-		// TODO Auto-generated method stub
-		
+		DbClassShoppingCart dbClass = new DbClassShoppingCart();
+		try {
+			dbClass.saveCart(customerProfile, liveCart);
+		} catch (DatabaseException e) {
+			throw new BackendException(e);
+		}		
 	}
 
 	@Override
 	public void runShoppingCartRules() throws RuleException, BusinessException {
-		// TODO Auto-generated method stub
-		
+		Rules transferObject = new RulesShoppingCart(liveCart);
+		transferObject.runRules();
 	}
 
 	@Override
 	public void runFinalOrderRules() throws RuleException, BusinessException {
-		// TODO Auto-generated method stub
+		Rules transferObject = new RulesFinalOrder(liveCart);
+		transferObject.runRules();
 		
 	}
 
