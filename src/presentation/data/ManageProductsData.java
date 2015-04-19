@@ -53,9 +53,7 @@ public enum ManageProductsData {
 		//TODO:need to refactor
 		ManageProductsController mpc = new  ManageProductsController();
 		List<CatalogPres> catalogListPress = new  ArrayList<CatalogPres>();
-		ObservableMap<CatalogPres, List<ProductPres>> productListData =
-	            FXCollections.observableHashMap();
-		
+		ObservableMap<CatalogPres, List<ProductPres>> productListData = FXCollections.observableHashMap();
 		try {
 			catalogListPress = mpc.getCatalogs().stream()
 				    .map(catalog -> Util.catalogToCatalogPres(catalog))
@@ -76,6 +74,7 @@ public enum ManageProductsData {
 	
 	/** Delivers the requested products list to the UI */
 	public ObservableList<ProductPres> getProductsList(CatalogPres catPres) {
+		//productsMap = readProductsFromDataSource();
 		return FXCollections.observableList(productsMap.get(catPres));
 	}
 	
@@ -104,7 +103,15 @@ public enum ManageProductsData {
 	 */
 	public boolean removeFromProductList(CatalogPres cat, ObservableList<ProductPres> toBeRemoved) {
 		if(toBeRemoved != null && !toBeRemoved.isEmpty()) {
+			ManageProductsController mpc = new ManageProductsController();
+			
 			boolean result = productsMap.get(cat).remove(toBeRemoved.get(0));
+			try {
+				mpc.deleteProduct(toBeRemoved.get(0).getProduct());
+			} catch (BackendException e) {
+				//System.out.println("in exception....");
+				return false;
+			}
 			return result;
 		}
 		return false;
@@ -117,6 +124,7 @@ public enum ManageProductsData {
 	private ObservableList<CatalogPres> readCatalogsFromDataSource() {
 		ManageProductsController mpc = new  ManageProductsController();
 		List<CatalogPres> catalogListPress = new  ArrayList<CatalogPres>();
+		
 		try {
 			catalogListPress = mpc.getCatalogs().stream()
 				    .map(catalog -> Util.catalogToCatalogPres(catalog))
@@ -131,6 +139,8 @@ public enum ManageProductsData {
 
 	/** Delivers the already-populated catalogList to the UI */
 	public ObservableList<CatalogPres> getCatalogList() {
+		//TODO: will be implemented different way
+		catalogList = readCatalogsFromDataSource();
 		return catalogList;
 	}
 
@@ -167,6 +177,13 @@ public enum ManageProductsData {
 	public boolean removeFromCatalogList(ObservableList<CatalogPres> toBeRemoved) {
 		boolean result = false;
 		CatalogPres item = toBeRemoved.get(0);
+		
+		ManageProductsController mpc = new ManageProductsController();
+		try {
+			mpc.deleteCatalog(item.getCatalog());
+		} catch (BackendException e) {
+			return result;
+		}
 		if (toBeRemoved != null && !toBeRemoved.isEmpty()) {
 			result = catalogList.remove(item);
 		}

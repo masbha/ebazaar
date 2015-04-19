@@ -164,7 +164,7 @@ public enum ManageProductsUIControl {
 					mpc.saveProduct(newProd);
 					
 				} catch (BusinessException be) {
-					
+					//TODO:
 				}
 				
 				ProductPres prodPres = new ProductPres();

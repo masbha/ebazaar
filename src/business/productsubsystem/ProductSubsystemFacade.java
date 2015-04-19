@@ -111,13 +111,22 @@ public class ProductSubsystemFacade implements ProductSubsystem {
 	
 	@Override
 	public void deleteProduct(Product product) throws BackendException {
-		// TODO Auto-generated method stub
-		
+		try {
+			DbClassProduct dbclass = new DbClassProduct();
+			dbclass.deleteProduct(product);
+		}  catch(DatabaseException e) {
+    		throw new BackendException(e);
+    	}		
 	}
 	
 	@Override
 	public void deleteCatalog(Catalog catalog) throws BackendException {
-		// TODO Auto-generated method stub
+		try {
+			DbClassCatalog dbclass = new DbClassCatalog();
+			dbclass.deleteCatalog(catalog.getId());
+		}  catch(DatabaseException e) {
+    		throw new BackendException(e);
+    	}
 		
 	}
 

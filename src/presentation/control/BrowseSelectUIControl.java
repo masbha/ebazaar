@@ -123,7 +123,7 @@ public enum BrowseSelectUIControl {
 			
 			TableView<CatalogPres> table = CatalogListWindow.getInstance().getTable();
 			CatalogPres cat = table.getSelectionModel().getSelectedItem();
-			if(cat == null) {
+			if (cat == null) {
 				CatalogListWindow.getInstance().displayError("Please select a row.");				
 			} else {
 				try {

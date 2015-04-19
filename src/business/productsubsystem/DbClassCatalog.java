@@ -18,9 +18,11 @@ public class DbClassCatalog implements DbClass {
     	new DataAccessSubsystemFacade();
 	
 	private String catalogName;
+	private int catalogId;
 	private String query;
     private String queryType;
     private final String SAVE = "Save";
+    private final String DELETE = "Delete";
     
     public void saveNewCatalog(String name) throws DatabaseException {
     	this.catalogName = name;
@@ -29,8 +31,10 @@ public class DbClassCatalog implements DbClass {
     }
      
 	public void buildQuery() throws DatabaseException {
-		if(queryType.equals(SAVE)) {
+		if (queryType.equals(SAVE)) {
 			buildSaveQuery();
+		} else if (queryType.equals(DELETE)) {
+			buildDeleteQuery();
 		}		
 	}
 	
@@ -40,6 +44,16 @@ public class DbClassCatalog implements DbClass {
 		"VALUES(NULL,'"+
 				  catalogName+"')"; 
 	}
+	
+	void buildDeleteQuery() {
+		query = "DELETE FROM CatalogType WHERE catalogid='" + catalogId + "'";
+	}
+	
+	public void deleteCatalog(int id) throws DatabaseException {
+    	this.catalogId = id;
+    	queryType = DELETE;
+    	dataAccessSS.deleteWithinTransaction(this);  	
+    }
 
 	public String getDbUrl() {
 		DbConfigProperties props = new DbConfigProperties();	
