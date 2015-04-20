@@ -69,7 +69,7 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 			
 			
 		}catch(DatabaseException de){
-			System.out.println(de.getMessage());
+			throw new BackendException(de.getMessage());
 		}
 		
 		return orderHistory;
