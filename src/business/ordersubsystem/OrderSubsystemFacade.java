@@ -53,6 +53,7 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 
 
 	@Override
+	//Implemented - Tasid
 	public List<Order> getOrderHistory() throws BackendException {
 		// TODO Auto-generated method stub
 		List<Order> orderHistory = new ArrayList<Order>();
@@ -78,8 +79,15 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 
 
 	@Override
+	//Implemened - Tasid
 	public void submitOrder(ShoppingCart shopCart) throws BackendException {
 		// TODO Auto-generated method stub
+		try{
+			DbClassOrder dbClass = new DbClassOrder(custProfile);
+			dbClass.submitOrder(shopCart);
+		}catch(DatabaseException de){
+			throw new BackendException(de.getMessage());
+		}
 		
 	}
     

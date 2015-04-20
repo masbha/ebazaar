@@ -75,8 +75,9 @@ public class OrderItemImpl implements OrderItem {
 
 
 	@Override
+	//Fixes patch 5 - Tasid
 	public int getProductId() {
-		return -1;
+		return productId;
 	}
 
 	@Override
