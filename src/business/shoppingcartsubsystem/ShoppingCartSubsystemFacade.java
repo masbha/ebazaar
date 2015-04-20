@@ -55,7 +55,7 @@ public enum ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 				savedCart = cartFound;
 			}
 		} catch(DatabaseException e) {
-			LOG.warning(msg);("Failed to retrieve saved cart.");
+			LOG.warning("Failed to retrieve saved cart.");
 			throw new BackendException(e);
 		}
 
