@@ -1,9 +1,6 @@
 .settings/*
 bin/*
-lib/*
-.classpath
 .project
 DesignNotes
 /bin/
-/lib/
 .DS_Store
