@@ -2,10 +2,8 @@
 package business.externalinterfaces;
 import java.util.List;
 
-
-
-
 import business.exceptions.BackendException;
+import business.productsubsystem.DbClassCatalogTypes;
 
 public interface ProductSubsystem {
 
@@ -40,5 +38,8 @@ public interface ProductSubsystem {
 	
 	/** deletes a catalog obtained from user input */
 	public void deleteCatalog(Catalog catalog) throws BackendException;
+	
+	//TEST
+	public DbClassCatalogTypes getGenericDbClassCatalogTypes();
 
 }

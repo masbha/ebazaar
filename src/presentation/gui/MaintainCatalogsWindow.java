@@ -141,27 +141,28 @@ public class MaintainCatalogsWindow extends Stage implements MessageableWindow {
 		btnBox.getChildren().add(deleteButton);
 		btnBox.getChildren().add(backButton);
 	
-		deleteButton.setOnAction(evt -> {
-			TableUtil.selectByRow(table);
-		    ObservableList<CatalogPres> tableItems = table.getItems();
-		    ObservableList<Integer> selectedIndices = table.getSelectionModel().getSelectedIndices();
-		    ObservableList<CatalogPres> selectedItems = table.getSelectionModel()
-					.getSelectedItems();
-		    if(tableItems.isEmpty()) {
-		    	messageBar.setText("Nothing to delete!");
-		    } else if (selectedIndices == null || selectedIndices.isEmpty()) {
-		    	messageBar.setText("Please select a row.");
-		    } else {
-		    	boolean result =  ManageProductsData.INSTANCE.removeFromCatalogList(selectedItems);
-			    if(result) {
-			    	table.setItems(ManageProductsData.INSTANCE.getCatalogList());
-			    	clearMessages();
-			    } else {
-			    	displayInfo("No items deleted.");
-			    }
-		    }
-		});
+//		deleteButton.setOnAction(evt -> {
+//			TableUtil.selectByRow(table);
+//		    ObservableList<CatalogPres> tableItems = table.getItems();
+//		    ObservableList<Integer> selectedIndices = table.getSelectionModel().getSelectedIndices();
+//		    ObservableList<CatalogPres> selectedItems = table.getSelectionModel()
+//					.getSelectedItems();
+//		    if(tableItems.isEmpty()) {
+//		    	messageBar.setText("Nothing to delete!");
+//		    } else if (selectedIndices == null || selectedIndices.isEmpty()) {
+//		    	messageBar.setText("Please select a row.");
+//		    } else {
+//		    	boolean result =  ManageProductsData.INSTANCE.removeFromCatalogList(selectedItems);
+//			    if(result) {
+//			    	table.setItems(ManageProductsData.INSTANCE.getCatalogList());
+//			    	clearMessages();
+//			    } else {
+//			    	displayInfo("No items deleted.");
+//			    }
+//		    }
+//		});
 		backButton.setOnAction(ManageProductsUIControl.INSTANCE.getBackButtonHandler());
+		deleteButton.setOnAction(ManageProductsUIControl.INSTANCE.getDeleteCatalogButtonHandler());
 		
 		addButton.setOnAction(evt -> {
 			AddCatalogPopup popup = new AddCatalogPopup(this);
@@ -178,4 +179,20 @@ public class MaintainCatalogsWindow extends Stage implements MessageableWindow {
 	public Text getMessageBar() {
 		return messageBar;
 	}
+
+
+	public TableView<CatalogPres> getTable() {
+		return table;
+	}
+
+
+	public void setTable(TableView<CatalogPres> table) {
+		this.table = table;
+	}
+
+
+	public void setMessageBar(String message) {
+		this.messageBar.setText(message);
+	}
+	
 }

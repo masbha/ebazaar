@@ -7,8 +7,11 @@ import java.util.logging.Logger;
 
 import presentation.data.CatalogPres;
 import middleware.exceptions.DatabaseException;
+import business.BusinessConstants;
+import business.SessionCache;
 import business.exceptions.BackendException;
 import business.externalinterfaces.Catalog;
+import business.externalinterfaces.CustomerSubsystem;
 import business.externalinterfaces.Product;
 import business.externalinterfaces.ProductSubsystem;
 import business.productsubsystem.ProductSubsystemFacade;
@@ -69,5 +72,10 @@ public class ManageProductsController   {
 		pss.saveNewProduct(product);
     	
     }
+    
+//    public boolean isAdmin() {
+//    	CustomerSubsystem cust = (CustomerSubsystem)SessionCache.getInstance().get(BusinessConstants.CUSTOMER);
+//    	return cust.isAdmin();
+//    }
     
 }

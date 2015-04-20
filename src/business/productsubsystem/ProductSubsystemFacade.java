@@ -67,10 +67,11 @@ public class ProductSubsystemFacade implements ProductSubsystem {
     		throw new BackendException(e);
     	}
     }
-	
+    
+    @Override
 	public int readQuantityAvailable(Product product) {
 		//IMPLEMENT
-		return 5;
+		return product.getQuantityAvail();
 	}
 	
 	@Override
@@ -128,6 +129,11 @@ public class ProductSubsystemFacade implements ProductSubsystem {
     		throw new BackendException(e);
     	}
 		
+	}
+	
+	@Override
+	public DbClassCatalogTypes getGenericDbClassCatalogTypes() {
+		return new DbClassCatalogTypes();
 	}
 
 }

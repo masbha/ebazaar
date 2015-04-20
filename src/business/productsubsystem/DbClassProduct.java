@@ -3,6 +3,7 @@ package business.productsubsystem;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -85,8 +86,10 @@ class DbClassProduct implements DbClass {
 						  product.getProductName() +"','"+
 						  product.getQuantityAvail() +"','"+
 						  product.getUnitPrice() +"','"+
-						  GuiUtils.localDateAsString(product.getMfgDate()) +"','"+
+						  //GuiUtils.localDateAsString(product.getMfgDate()) +"','"+
+						  product.getMfgDate().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"))  +"','"+
 						  product.getDescription() +"')"; 
+		;
 	}
 
 	public TwoKeyHashMap<Integer, String, Product> readProductTable()
