@@ -6,16 +6,16 @@ import presentation.gui.GuiConstants;
 import presentation.gui.GuiUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import business.ordersubsystem.OrderImpl;
+import business.externalinterfaces.Order;
 
 public class OrderPres {
-	private OrderImpl order;
+	private Order order;
 	
-	public OrderImpl getOrder() {
+	public Order getOrder() {
 		return order;
 	}
-
-	public void setOrder(OrderImpl order) {
+	// Fixes Patch - 5 (Added - Tasid)
+	public void setOrder(Order order) {
 		this.order = order;
 	}
 	public SimpleStringProperty orderIdProperty() {

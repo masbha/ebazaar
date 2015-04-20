@@ -71,7 +71,8 @@ public interface CustomerSubsystem {
 //     * read from the database). Used by other subsystems
 //     * to read current user's order history (not used during login process)
 //     * */
-//    public List<Order> getOrderHistory();
+  //Uncomment -TASID
+    public List<Order> getOrderHistory();
 //    
 //    
 //    

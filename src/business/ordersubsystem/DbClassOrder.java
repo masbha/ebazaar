@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import presentation.gui.GuiUtils;
 import middleware.DbConfigProperties;
 import middleware.dataaccess.DataAccessSubsystemFacade;
 import middleware.exceptions.DatabaseException;
@@ -164,7 +165,20 @@ class DbClassOrder implements DbClass {
     }
     
     private void populateOrderItems(ResultSet rs) throws DatabaseException {
-       //implement
+       //implement - Tasid
+     	OrderItem orderItem = null;
+     	orderItems= new LinkedList<OrderItem>();
+        try {
+            while(rs.next()){
+            	orderItem = new OrderItemImpl(rs.getInt("productid"),
+                                        rs.getInt("quantity"));
+                
+                orderItems.add(orderItem);
+            }
+        }
+        catch(SQLException e){
+        	throw new DatabaseException(e);
+        }
     }
     
     private void populateOrderIds(ResultSet resultSet) throws DatabaseException {
@@ -180,7 +194,17 @@ class DbClassOrder implements DbClass {
     }
     
     private void populateOrderData(ResultSet resultSet) throws DatabaseException {  	
-        //implement
+        //implement - Tasid
+
+        try {
+            while(resultSet.next()){
+            	orderData = new OrderImpl(orderId,GuiUtils.localDateForString(resultSet.getString("orderdate")));
+
+            }
+        }
+        catch(SQLException e){
+        	throw new DatabaseException(e);
+        }
     }    
  
     public void populateEntity(ResultSet resultSet) throws DatabaseException {

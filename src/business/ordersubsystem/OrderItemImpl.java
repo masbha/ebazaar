@@ -1,6 +1,9 @@
 package business.ordersubsystem;
 
+import business.exceptions.BackendException;
 import business.externalinterfaces.OrderItem;
+import business.externalinterfaces.ProductSubsystem;
+import business.productsubsystem.ProductSubsystemFacade;
 
 
 public class OrderItemImpl implements OrderItem {
@@ -14,6 +17,19 @@ public class OrderItemImpl implements OrderItem {
 		productName = name;
 		this.quantity = quantity;
 		this.unitPrice = price;
+	}
+	
+	 /** This version of constructor used when reading from database */
+	//Implemented - Tasid
+	public OrderItemImpl(int productId, int quantity) {
+		this.quantity = quantity;
+		ProductSubsystem prodSS= new ProductSubsystemFacade();
+		try{
+	        productName = prodSS.getProductFromId(productId).getProductName();
+	        unitPrice = prodSS.getProductFromId(productId).getUnitPrice();
+		}catch(BackendException e){
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public int getOrderItemId() {
