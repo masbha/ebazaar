@@ -3,7 +3,9 @@ package business.customersubsystem;
 import java.util.ArrayList;
 import java.util.List;
 
+import middleware.creditverifcation.CreditVerificationFacade;
 import middleware.exceptions.DatabaseException;
+import middleware.exceptions.MiddlewareException;
 import business.exceptions.BackendException;
 import business.exceptions.BusinessException;
 import business.exceptions.RuleException;
@@ -11,6 +13,7 @@ import business.externalinterfaces.Address;
 import business.externalinterfaces.CreditCard;
 import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.CustomerSubsystem;
+import business.externalinterfaces.DbClassAddressForTest;
 import business.externalinterfaces.Order;
 import business.externalinterfaces.OrderSubsystem;
 import business.externalinterfaces.Rules;
@@ -27,6 +30,9 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	CreditCardImpl defaultPaymentInfo;
 	CustomerProfileImpl customerProfile;
 	
+	DbClassAddress dbAddress;
+	DbClassCreditCard dbCreditCard;
+	CreditVerificationFacade creditVerification;
 	
 	/** Use for loading order history,
 	 * default addresses, default payment info, 
@@ -34,6 +40,10 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	 * after login*/
     public void initializeCustomer(Integer id, int authorizationLevel) 
     		throws BackendException {
+    	dbAddress=new DbClassAddress();
+    	dbCreditCard=new DbClassCreditCard();
+    	creditVerification=new CreditVerificationFacade();
+    	
 	    boolean isAdmin = (authorizationLevel >= 1);
 		loadCustomerProfile(id, isAdmin);
 		loadDefaultShipAddress();
@@ -51,18 +61,22 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 			dbclass.readCustomerProfile(id);
 			customerProfile = dbclass.getCustomerProfile();
 			customerProfile.setIsAdmin(isAdmin);
+			
+			dbCreditCard.readDefaultPayment(id);
 		} catch (DatabaseException e) {
 			throw new BackendException(e);
 		}
     }
     void loadDefaultShipAddress() throws BackendException {
-    	//implement
+    	//implement    	
+    	defaultShipAddress= dbAddress.getDefaultShipAddress();
     }
 	void loadDefaultBillAddress() throws BackendException {
-		//implement
+		//implement		
+    	defaultBillAddress= dbAddress.getDefaultBillAddress();
 	}
-	void loadDefaultPaymentInfo() throws BackendException {
-		//implement
+	void loadDefaultPaymentInfo() throws BackendException {		
+		defaultPaymentInfo=dbCreditCard.getDefaultPaymentInfo();
 	}
 	void loadOrderData() throws BackendException {
 
@@ -116,9 +130,9 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
      * Use to supply all stored addresses of a customer when he wishes to select an
 	 * address in ship/bill window 
 	 */
-    public List<Address> getAllAddresses() throws BackendException {
-    	return new ArrayList<Address>();
+    public List<Address> getAllAddresses() throws BackendException {    	
     	//implement
+    	return dbAddress.getAddressList();
     }
 
 	public Address runAddressRules(Address addr) throws RuleException,
@@ -159,5 +173,73 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	public List<Order> getOrderHistory() {
 		return orderHistory;
 	}
+
 	
+
+	@Override
+	public void setShippingAddressInCart(Address addr) {
+		// TODO Auto-generated method stub
+		shoppingCartSubsystem.getLiveCart();
+		
+	}
+
+	@Override
+	public void setBillingAddressInCart(Address addr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPaymentInfoInCart(CreditCard cc) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void submitOrder() throws BackendException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void refreshAfterSubmit() throws BackendException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ShoppingCartSubsystem getShoppingCart() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveShoppingCart() throws BackendException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void checkCreditCard(CreditCard cc) throws BusinessException {
+		// TODO Auto-generated method stub
+		try {
+			creditVerification.checkCreditCard(customerProfile, defaultBillAddress, cc, 0);
+		} catch (MiddlewareException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public DbClassAddressForTest getGenericDbClassAddress() {
+		// TODO Auto-generated method stub
+		return dbAddress;		
+	}
+
+	@Override
+	public CustomerProfile getGenericCustomerProfile() {
+		return customerProfile;		
+	}
+
 }
