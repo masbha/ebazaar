@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import presentation.gui.GuiUtils;
 import middleware.DbConfigProperties;
 import middleware.dataaccess.DataAccessSubsystemFacade;
 import middleware.exceptions.DatabaseException;
@@ -15,6 +16,7 @@ import middleware.externalinterfaces.DataAccessSubsystem;
 import middleware.externalinterfaces.DbClass;
 import middleware.externalinterfaces.DbConfigKey;
 import business.externalinterfaces.Address;
+import business.externalinterfaces.CartItem;
 import business.externalinterfaces.CreditCard;
 import business.externalinterfaces.CustomerProfile;
 import business.externalinterfaces.Order;
@@ -78,7 +80,24 @@ class DbClassOrder implements DbClass {
     
     // Precondition: CustomerProfile has been set by the constructor
     void submitOrder(ShoppingCart shopCart) throws DatabaseException {
-    	//implement
+    	//implement - Tasid
+    	order.setShipAddress(shopCart.getShippingAddress());
+    	order.setBillAddress(shopCart.getBillingAddress());
+    	order.setPaymentInfo(shopCart.getPaymentInfo());
+    	
+    	order.setOrderId(submitOrderData());
+    	
+    	List <CartItem> cartItemList = shopCart.getCartItems();
+    	
+    	orderItem.setOrderItemId(order.getOrderId()); 
+    	for(CartItem cartItem:cartItemList){
+    		orderItem.setProductId(cartItem.getProductid());
+    		orderItem.setQuantity(Integer.parseInt(cartItem.getQuantity()));
+    		double unitPrice = Integer.parseInt(cartItem.getTotalprice())/Integer.parseInt(cartItem.getQuantity());
+    		orderItem.setUnitPrice(unitPrice);
+    		submitOrderItem(orderItem);
+    	}
+    	
     }
 	    
     
@@ -147,8 +166,13 @@ class DbClassOrder implements DbClass {
     }
 	
     private void buildSaveOrderItemQuery(){
-    	//implement
-        query = "";
+    	//implement - Tasid
+    	query = "INSERT into orderItem "+
+    	        "(orderid, productid, quantity, totalprice)" +
+    	        "VALUES(" + orderItem.getOrderId() + ",'"+
+    	                  orderItem.getProductId()+"','"+
+    	                  orderItem.getQuantity()+"','"+
+    	                  order.getTotalPrice()+")"; 
     }
 
     private void buildGetOrderDataQuery() {
@@ -164,7 +188,20 @@ class DbClassOrder implements DbClass {
     }
     
     private void populateOrderItems(ResultSet rs) throws DatabaseException {
-       //implement
+       //implement - Tasid
+     	OrderItem orderItem = null;
+     	orderItems= new LinkedList<OrderItem>();
+        try {
+            while(rs.next()){
+            	orderItem = new OrderItemImpl(rs.getInt("productid"),
+                                        rs.getInt("quantity"));
+                
+                orderItems.add(orderItem);
+            }
+        }
+        catch(SQLException e){
+        	throw new DatabaseException(e);
+        }
     }
     
     private void populateOrderIds(ResultSet resultSet) throws DatabaseException {
@@ -180,7 +217,17 @@ class DbClassOrder implements DbClass {
     }
     
     private void populateOrderData(ResultSet resultSet) throws DatabaseException {  	
-        //implement
+        //implement - Tasid
+
+        try {
+            while(resultSet.next()){
+            	orderData = new OrderImpl(orderId,GuiUtils.localDateForString(resultSet.getString("orderdate")));
+
+            }
+        }
+        catch(SQLException e){
+        	throw new DatabaseException(e);
+        }
     }    
  
     public void populateEntity(ResultSet resultSet) throws DatabaseException {

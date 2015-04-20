@@ -66,9 +66,10 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	}
 	void loadOrderData() throws BackendException {
 
-		// retrieve the order history for the customer and store here
+		// retrieve the order history for the customer and store here (Uncommented 2nd line - Tasid)
 		orderSubsystem = new OrderSubsystemFacade(customerProfile);
-		//orderHistory = orderSubsystem.getOrderHistory();
+		orderHistory = orderSubsystem.getOrderHistory();
+
 		
 	
 	}
@@ -153,4 +154,10 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 			String expirationDate, String cardNum, String cardType) {
 		return new CreditCardImpl(nameOnCard, expirationDate, cardNum, cardType);
 	}
+	//Added - Tasid
+	@Override
+	public List<Order> getOrderHistory() {
+		return orderHistory;
+	}
+	
 }

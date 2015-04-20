@@ -1,6 +1,8 @@
 package presentation.data;
 
 import java.util.List;
+import business.usecasecontrol.ViewOrdersController;
+import presentation.gui.GuiUtils;
 
 public enum ViewOrdersData {
 	INSTANCE;
@@ -13,6 +15,8 @@ public enum ViewOrdersData {
 	}
 	
 	public List<OrderPres> getOrders() {
-		return DefaultData.ALL_ORDERS;
+		//Updated - Tasid
+		return GuiUtils.orderListToOrderPresList(ViewOrdersController.getOrderHistory());
+//		return DefaultData.ALL_ORDERS;
 	}
 }

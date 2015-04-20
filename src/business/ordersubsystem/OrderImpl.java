@@ -17,6 +17,11 @@ public class OrderImpl implements Order {
 	
 	public OrderImpl() {
 	}
+	//Implemented - Tasid
+	public OrderImpl(int orderId, LocalDate date) {
+		this.orderId=orderId;
+		this.date=date;
+	}
 
 	public List<OrderItem> getOrderItems() {
 		return orderItems;

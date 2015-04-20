@@ -14,6 +14,7 @@ import javafx.beans.value.ObservableNumberValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
+import business.externalinterfaces.Order;
 import business.externalinterfaces.OrderItem;
 import business.ordersubsystem.OrderItemImpl;
 import presentation.data.*;
@@ -84,6 +85,14 @@ public class GuiUtils {
                 .map(orderItem -> {OrderItemPres p = new OrderItemPres();
                                    p.setOrderItem(orderItem); return p;})
                 .collect(Collectors.toList()));
+	}
+	//Fixes Patch - 5 (Added - Tasid)
+	public static List<OrderPres> orderListToOrderPresList(List<Order> list) {
+		if(list == null) return null;
+		return list.stream().
+				map(ord -> {OrderPres op = new OrderPres();
+		                    op.setOrder(ord); return op;})
+					  .collect(Collectors.toList());
 	}
 
 }
