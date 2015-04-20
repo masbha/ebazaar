@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.mysql.jdbc.log.Log;
+
 import middleware.exceptions.DatabaseException;
 import business.exceptions.BackendException;
 import business.exceptions.BusinessException;
@@ -19,6 +21,8 @@ import business.externalinterfaces.ShoppingCartSubsystem;
 
 public enum ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 	INSTANCE;
+	
+	private static final Logger LOG = Logger.getLogger(ShoppingCartSubsystemFacade.class.getPackage().getName());
 	
 	ShoppingCartImpl liveCart = new ShoppingCartImpl(new LinkedList<CartItem>());
 	ShoppingCartImpl savedCart;
@@ -42,6 +46,7 @@ public enum ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 
 	public void retrieveSavedCart() throws BackendException {
 		try {
+			LOG.info("Trying to retrieve saved cart.");
 			DbClassShoppingCart dbClass = new DbClassShoppingCart();
 			ShoppingCartImpl cartFound = dbClass.retrieveSavedCart(customerProfile);
 			if(cartFound == null) {
@@ -50,6 +55,7 @@ public enum ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 				savedCart = cartFound;
 			}
 		} catch(DatabaseException e) {
+			LOG.warning(msg);("Failed to retrieve saved cart.");
 			throw new BackendException(e);
 		}
 
@@ -58,8 +64,10 @@ public enum ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 	public static CartItem createCartItem(String productName, String quantity,
             String totalprice) {
 		try {
+			LOG.info("Trying tor create cart time...");
 			return new CartItemImpl(productName, quantity, totalprice);
 		} catch(BackendException e) {
+			LOG.warning("Failed to create cart item...");
 			throw new RuntimeException("Can't create a cartitem because of productid lookup: " + e.getMessage());
 		}
 	}
@@ -118,8 +126,10 @@ public enum ShoppingCartSubsystemFacade implements ShoppingCartSubsystem {
 	public void saveLiveCart() throws BackendException {
 		DbClassShoppingCart dbClass = new DbClassShoppingCart();
 		try {
+			LOG.info("Trying to save live cart...");
 			dbClass.saveCart(customerProfile, liveCart);
 		} catch (DatabaseException e) {
+			LOG.warning("Saving cart failed");
 			throw new BackendException(e);
 		}		
 	}
