@@ -162,16 +162,17 @@ public enum ManageProductsUIControl {
 							    addProductPopup.getDescription());
 					
 					mpc.saveProduct(newProd);
+					ProductPres prodPres = new ProductPres();
+					prodPres.setProduct(newProd);
+					maintainProductsWindow.addItem(prodPres);
+					addProductPopup.setMessageBar("");
+					addProductPopup.hide();
 					
 				} catch (BusinessException be) {
 					//TODO:
-				}
+					addProductPopup.setMessageBar("Product save fail");
+				}				
 				
-				ProductPres prodPres = new ProductPres();
-				prodPres.setProduct(newProd);
-				maintainProductsWindow.addItem(prodPres);
-				addProductPopup.setMessageBar("");
-				addProductPopup.hide();
 			}	  	   
 		}
 	}

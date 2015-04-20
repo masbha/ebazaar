@@ -132,6 +132,7 @@ public class MaintainProductsWindow extends Stage implements MessageableWindow {
 	public void addItem(ProductPres item) {
 		CatalogPres selected = ManageProductsData.INSTANCE.getSelectedCatalog();
 		ManageProductsData.INSTANCE.addToProdList(selected, item);
+		ManageProductsData.INSTANCE.updateProductsMap(selected);
 		setData(ManageProductsData.INSTANCE.getProductsList(selected));
 		TableUtil.refreshTable(table, synchronizer);
 	}
@@ -208,7 +209,7 @@ public class MaintainProductsWindow extends Stage implements MessageableWindow {
 		    	messageBar.setText("Please select a row.");
 		    } else {
 		    	boolean result =  ManageProductsData.INSTANCE.removeFromProductList(selectedCatalog, selectedItems);
-			    if(result) {
+			    if (result) {
 			    	table.setItems(ManageProductsData.INSTANCE.getProductsList(selectedCatalog));
 			    	clearMessages();
 			    } else {

@@ -72,9 +72,23 @@ public enum ManageProductsData {
 		//return DefaultData.PRODUCT_LIST_DATA;
 	}
 	
+	
+	public void updateProductsMap(CatalogPres catPres) {
+		//TODO:need to refactor
+		ManageProductsController mpc = new  ManageProductsController();
+		
+		try {
+			productsMap.put(catPres, mpc.getProductsList(catPres.getCatalog().getName())
+					.stream()
+					.map(prod -> Util.productToProductPres(prod))
+					.collect(Collectors.toList()));	
+		} catch (BackendException e) {
+			//TODO:
+		}
+		
+	}
 	/** Delivers the requested products list to the UI */
 	public ObservableList<ProductPres> getProductsList(CatalogPres catPres) {
-		//productsMap = readProductsFromDataSource();
 		return FXCollections.observableList(productsMap.get(catPres));
 	}
 	
@@ -104,15 +118,14 @@ public enum ManageProductsData {
 	public boolean removeFromProductList(CatalogPres cat, ObservableList<ProductPres> toBeRemoved) {
 		if(toBeRemoved != null && !toBeRemoved.isEmpty()) {
 			ManageProductsController mpc = new ManageProductsController();
-			
-			boolean result = productsMap.get(cat).remove(toBeRemoved.get(0));
 			try {
 				mpc.deleteProduct(toBeRemoved.get(0).getProduct());
+				boolean result = productsMap.get(cat).remove(toBeRemoved.get(0));
+				return result;
 			} catch (BackendException e) {
-				//System.out.println("in exception....");
 				return false;
 			}
-			return result;
+			
 		}
 		return false;
 	}
