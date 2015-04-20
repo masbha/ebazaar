@@ -1,10 +1,9 @@
 package business.productsubsystem;
 
-import static business.util.StringParse.makeString;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,7 +18,6 @@ import middleware.externalinterfaces.DbClass;
 import middleware.externalinterfaces.DbConfigKey;
 import business.externalinterfaces.Catalog;
 import business.externalinterfaces.Product;
-import business.externalinterfaces.ProductFromGui;
 import business.util.TwoKeyHashMap;
 
 class DbClassProduct implements DbClass {
@@ -46,6 +44,7 @@ class DbClassProduct implements DbClass {
 	private final String READ_PRODUCT = "ReadProduct";
 	private final String READ_PROD_LIST = "ReadProdList";
 	private final String SAVE_NEW_PROD = "SaveNewProd";
+	private final String DELETE_PRODUCT = "DeleteProduct";
 
 	public void buildQuery() {
 		if (queryType.equals(LOAD_PROD_TABLE)) {
@@ -56,6 +55,8 @@ class DbClassProduct implements DbClass {
 			buildProdListQuery();
 		} else if (queryType.equals(SAVE_NEW_PROD)) {
 			buildSaveNewQuery();
+		} else if (queryType.equals(DELETE_PRODUCT)) {
+			buildDeleteQuery();
 		}
 
 	}
@@ -71,9 +72,24 @@ class DbClassProduct implements DbClass {
 	private void buildReadProductQuery() {
 		query = "SELECT * FROM Product WHERE productid = " + productId;
 	}
+	
+	private void buildDeleteQuery() {
+		query = "DELETE FROM Product WHERE productid = " + productId;
+	}
 
 	private void buildSaveNewQuery() {
-		//implement
+		//TO DO: change manufacture date in appropriate layer
+		query = "INSERT into product "+
+				"(productid,catalogid,productname,totalquantity,priceperunit,mfgdate,description) " +
+				"VALUES(NULL,'"+
+						  product.getCatalog().getId() +"', '"+
+						  product.getProductName() +"','"+
+						  product.getQuantityAvail() +"','"+
+						  product.getUnitPrice() +"','"+
+						  //GuiUtils.localDateAsString(product.getMfgDate()) +"','"+
+						  product.getMfgDate().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"))  +"','"+
+						  product.getDescription() +"')"; 
+		;
 	}
 
 	public TwoKeyHashMap<Integer, String, Product> readProductTable()
@@ -128,9 +144,23 @@ class DbClassProduct implements DbClass {
 	 * Database columns: productid, productname, totalquantity, priceperunit,
 	 * mfgdate, catalogid, description
 	 */
-	public void saveNewProduct(ProductFromGui product, Integer catalogid,
-			String description) throws DatabaseException {
-		//implement
+//	public void saveNewProduct(ProductFromGui product, Integer catalogid,
+//			String description) throws DatabaseException {
+//		//implement
+//	}
+	
+	public void saveNewProduct(Product product) throws DatabaseException {
+		//TODO: may need to change
+		this.product = product;
+    	queryType = SAVE_NEW_PROD;
+    	dataAccessSS.saveWithinTransaction(this);  
+	}
+	
+	public void deleteProduct(Product product) throws DatabaseException {
+		//TODO: may need to change
+		this.productId = product.getProductId();
+    	queryType = DELETE_PRODUCT;
+    	dataAccessSS.deleteWithinTransaction(this);  
 	}
 
 	public void populateEntity(ResultSet resultSet) throws DatabaseException {
@@ -143,7 +173,11 @@ class DbClassProduct implements DbClass {
 		}
 	}
 	
-	
+	public List<Product> loadProductTable() throws DatabaseException {
+		queryType = LOAD_PROD_TABLE;
+		dataAccessSS.atomicRead(this);
+		return productList;
+	}
 
 	private void populateProdList(ResultSet rs) throws DatabaseException {
 		productList = new LinkedList<Product>();

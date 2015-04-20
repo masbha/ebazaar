@@ -3,6 +3,7 @@ package presentation.gui;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import presentation.control.ManageProductsUIControl;
 import presentation.data.DefaultData;
 import presentation.data.ProductPres;
 import business.externalinterfaces.*;
@@ -105,34 +106,34 @@ public class AddProductPopup extends Popup {
 		btnBox.setAlignment(Pos.CENTER);
 		btnBox.getChildren().add(addButton);
 		btnBox.getChildren().add(cancelButton);
-		
-	
-		addButton.setOnAction(evt -> {
-			//Rules should be managed in a more maintainable way
-			if(id.getText().trim().equals("")) {
-				messageBar.setText("Product Id field must be nonempty! \n[Type '0' to auto-generate ID.]");
-			}
-			else if(name.getText().trim().equals("")) messageBar.setText("Product Name field must be nonempty!");
-			else if(manufactureDate.getText().trim().equals("")) messageBar.setText("Manufacture Date field must be nonempty!");
-			else if(numAvail.getText().trim().equals("")) messageBar.setText("Number in Stock field must be nonempty!");
-			else if(unitPrice.getText().trim().equals("")) messageBar.setText("Unit Price field must be nonempty!");
-			else if(description.getText().trim().equals("")) messageBar.setText("Description field must be nonempty!");
-			else {
-				String idNewVal = id.getText();
-				if(idNewVal.equals("0")) {
-					idNewVal = DefaultData.generateId(100);
-				} //Catalog c, Integer pi, String pn, int qa, double up, LocalDate md, String d
-				Product newProd = ProductSubsystemFacade.createProduct(DefaultData.CATALOG_MAP.get(catalogName.getText()), 
-						Integer.parseInt(id.getText()), name.getText(), Integer.parseInt(numAvail.getText()), 
-						    Double.parseDouble(unitPrice.getText()), LocalDate.parse(manufactureDate.getText(), DateTimeFormatter.ofPattern("MM/dd/yyyy")), 
-						      description.getText());
-				ProductPres prodPres = new ProductPres();
-				prodPres.setProduct(newProd);
-				maintainProductsWindow.addItem(prodPres);
-				messageBar.setText("");
-				hide();
-			}	   
-		});
+		ManageProductsUIControl.INSTANCE.setAddProductWindowInfo(this);
+		addButton.setOnAction(ManageProductsUIControl.INSTANCE.getAddProductPopupHandler());
+//		addButton.setOnAction(evt -> {
+//			//Rules should be managed in a more maintainable way
+//			if(id.getText().trim().equals("")) {
+//				messageBar.setText("Product Id field must be nonempty! \n[Type '0' to auto-generate ID.]");
+//			}
+//			else if(name.getText().trim().equals("")) messageBar.setText("Product Name field must be nonempty!");
+//			else if(manufactureDate.getText().trim().equals("")) messageBar.setText("Manufacture Date field must be nonempty!");
+//			else if(numAvail.getText().trim().equals("")) messageBar.setText("Number in Stock field must be nonempty!");
+//			else if(unitPrice.getText().trim().equals("")) messageBar.setText("Unit Price field must be nonempty!");
+//			else if(description.getText().trim().equals("")) messageBar.setText("Description field must be nonempty!");
+//			else {
+//				String idNewVal = id.getText();
+//				if(idNewVal.equals("0")) {
+//					idNewVal = DefaultData.generateId(100);
+//				} //Catalog c, Integer pi, String pn, int qa, double up, LocalDate md, String d
+//				Product newProd = ProductSubsystemFacade.createProduct(DefaultData.CATALOG_MAP.get(catalogName.getText()), 
+//						Integer.parseInt(id.getText()), name.getText(), Integer.parseInt(numAvail.getText()), 
+//						    Double.parseDouble(unitPrice.getText()), LocalDate.parse(manufactureDate.getText(), DateTimeFormatter.ofPattern("MM/dd/yyyy")), 
+//						      description.getText());
+//				ProductPres prodPres = new ProductPres();
+//				prodPres.setProduct(newProd);
+//				maintainProductsWindow.addItem(prodPres);
+//				messageBar.setText("");
+//				hide();
+//			}	   
+//		});
 		cancelButton.setOnAction(evt -> {
 			messageBar.setText("");
 			hide();
@@ -146,4 +147,33 @@ public class AddProductPopup extends Popup {
 	void setBackground(Color color) {
 		topLevel.backgroundProperty().set(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
 	}
+	
+	public String getCatalogName() {
+		return catalogName.getText();
+	}
+	
+	public String getId() {
+		return id.getText();
+	}
+	public String getName() {
+		return name.getText();
+	}
+	public String getManufactureDate() {
+		return manufactureDate.getText();
+	}
+	public String getNumAvail() {
+		return numAvail.getText();
+	}
+	public String getUnitPrice() {
+		return unitPrice.getText();
+	}
+	public String getDescription() {
+		return description.getText();
+	}
+
+	public void setMessageBar(String messageBar) {
+		this.messageBar.setText(messageBar);    //messageBar;
+	}
+	
+	 
 }

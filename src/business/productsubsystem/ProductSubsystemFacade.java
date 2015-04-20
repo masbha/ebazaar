@@ -67,9 +67,73 @@ public class ProductSubsystemFacade implements ProductSubsystem {
     		throw new BackendException(e);
     	}
     }
-	
+    
+    @Override
 	public int readQuantityAvailable(Product product) {
 		//IMPLEMENT
-		return 5;
+		return product.getQuantityAvail();
 	}
+	
+	@Override
+	public Catalog getCatalogFromName(String catName) throws BackendException {
+		//TODO: may need to refactor
+		try {
+			DbClassCatalogTypes dbClass = new DbClassCatalogTypes();
+			int id = dbClass.getCatalogTypes().getCatalogId(catName);
+			return ProductSubsystemFacade.createCatalog(id, catName);
+		} catch(DatabaseException e) {
+			throw new BackendException(e);
+		}
+		
+	}
+	
+	@Override
+	public void saveNewCatalog(Catalog catalog) throws BackendException {
+		try {
+			DbClassCatalog dbclass = new DbClassCatalog();
+			dbclass.saveNewCatalog(catalog.getName());
+		}  catch(DatabaseException e) {
+    		throw new BackendException(e);
+    	}
+		
+	}
+	
+	@Override
+	public void saveNewProduct(Product product) throws BackendException {
+		//TODO:may need to change
+		try {
+			DbClassProduct dbclass = new DbClassProduct();
+			dbclass.saveNewProduct(product);
+		}  catch(DatabaseException e) {
+    		throw new BackendException(e);
+    	}
+		
+	}
+	
+	@Override
+	public void deleteProduct(Product product) throws BackendException {
+		try {
+			DbClassProduct dbclass = new DbClassProduct();
+			dbclass.deleteProduct(product);
+		}  catch(DatabaseException e) {
+    		throw new BackendException(e);
+    	}		
+	}
+	
+	@Override
+	public void deleteCatalog(Catalog catalog) throws BackendException {
+		try {
+			DbClassCatalog dbclass = new DbClassCatalog();
+			dbclass.deleteCatalog(catalog.getId());
+		}  catch(DatabaseException e) {
+    		throw new BackendException(e);
+    	}
+		
+	}
+	
+	@Override
+	public DbClassCatalogTypes getGenericDbClassCatalogTypes() {
+		return new DbClassCatalogTypes();
+	}
+
 }
