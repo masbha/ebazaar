@@ -241,6 +241,7 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 		LOG.info("saveShoppingCart");
 	
 		shoppingCartSubsystem.saveLiveCart();
+		shoppingCartSubsystem.retrieveSavedCart();
 		
 	}
 
