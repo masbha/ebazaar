@@ -189,9 +189,9 @@ class DbClassAddress implements DbClass, DbClassAddressForTest {
                 	 defaultShipAddress = new AddressImpl();
                      String str = rs.getString("shipaddress1") + rs.getString("shipaddress2");
                      defaultShipAddress.setStreet(str);
-                     defaultShipAddress.setCity(rs.getString("billcity"));
-                     defaultShipAddress.setState(rs.getString("billstate"));
-                     defaultShipAddress.setZip(rs.getString("billzipcode"));                     
+                     defaultShipAddress.setCity(rs.getString("shipcity"));
+                     defaultShipAddress.setState(rs.getString("shipstate"));
+                     defaultShipAddress.setZip(rs.getString("shipzipcode"));                     
                  }                
              }
              catch(SQLException e){
@@ -208,9 +208,9 @@ class DbClassAddress implements DbClass, DbClassAddressForTest {
                 	 defaultBillAddress = new AddressImpl();
                      String str = rs.getString("billaddress1") + rs.getString("billaddress2");
                      defaultBillAddress.setStreet(str);
-                     defaultBillAddress.setCity(rs.getString(CITY));
-                     defaultBillAddress.setState(rs.getString(STATE));
-                     defaultBillAddress.setZip(rs.getString(ZIP));                     
+                     defaultBillAddress.setCity(rs.getString("billcity"));
+                     defaultBillAddress.setState(rs.getString("billstate"));
+                     defaultBillAddress.setZip(rs.getString("billzipcode"));                     
                  }                
              }
              catch(SQLException e){
