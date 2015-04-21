@@ -250,6 +250,7 @@ public enum BrowseSelectUIControl {
 				CatalogListWindow window = CatalogListWindow.getInstance(primaryStage, 
 					FXCollections.observableList(BrowseSelectData.INSTANCE.getCatalogList()));
 				window.clearMessages();
+				shoppingCartWindow=ShoppingCartWindow.INSTANCE;
 				shoppingCartWindow.hide();
 				window.setTableAccessByRow();
 				window.show();		
