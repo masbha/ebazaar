@@ -1,5 +1,7 @@
 package business.ordersubsystem;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -7,6 +9,7 @@ import java.util.logging.Logger;
 import middleware.exceptions.DatabaseException;
 import business.exceptions.BackendException;
 import business.externalinterfaces.CustomerProfile;
+import business.externalinterfaces.DbClassOrderForTest;
 import business.externalinterfaces.Order;
 import business.externalinterfaces.OrderItem;
 import business.externalinterfaces.OrderSubsystem;
@@ -30,7 +33,10 @@ public class OrderSubsystemFacade implements OrderSubsystem {
     
     /** to create an Order object from outside the subsystem */
     public static Order createOrder(Integer orderId, String orderDate, String totalPrice) {
-    	return null;
+    	//Added - Tasid
+    	LocalDate od = LocalDate.parse(orderDate, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+    	return new OrderImpl(orderId, od);
+//    	return null;
     }
     
     ///////////// Methods internal to the Order Subsystem -- NOT public
@@ -90,5 +96,15 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 		}
 		
 	}
+	
+	
+	@Override
+	//Only For Test Case
+	//Implemened - Tasid
+	public DbClassOrderForTest getGenericDbClassOrder() {
+		// TODO Auto-generated method stub
+		return new DbClassOrder();
+	}
+	
     
 }
