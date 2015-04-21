@@ -47,17 +47,22 @@ public enum ManageProductsUIControl {
 	// Manage catalogs
 	private class MaintainCatalogsHandler implements EventHandler<ActionEvent>, Callback {
 		public void doUpdate() {
-			try {
-	    		Authorization.checkAuthorization(maintainCatalogsWindow, DataUtil.custIsAdmin());
-	    		
-	    	} catch(UnauthorizedException ue) {
-	        	displayError(ue.getMessage());
-	        	return;
-	        }			
-			ObservableList<CatalogPres> list = ManageProductsData.INSTANCE.getCatalogList();
-			maintainCatalogsWindow.setData(list);
-			maintainCatalogsWindow.show();
-			primaryStage.hide();
+			if (DataUtil.custIsAdmin()) {
+				try {
+		    		Authorization.checkAuthorization(maintainCatalogsWindow, DataUtil.custIsAdmin());
+		    		
+		    	} catch(UnauthorizedException ue) {
+		        	displayError(ue.getMessage());
+		        	return;
+		        }			
+				ObservableList<CatalogPres> list = ManageProductsData.INSTANCE.getCatalogList();
+				maintainCatalogsWindow.setData(list);
+				maintainCatalogsWindow.show();
+				primaryStage.hide();
+			} else {
+				primaryStage.show();
+				startScreenCallback.displayError("You are not authorized to access this list");
+			}
 		}
 		public Text getMessageBar() {
 			return startScreenCallback.getMessageBar();
@@ -83,21 +88,26 @@ public enum ManageProductsUIControl {
 	
 	private class MaintainProductsHandler implements EventHandler<ActionEvent>, Callback {
 		public void doUpdate() {
-			try {
-	    		Authorization.checkAuthorization(maintainProductsWindow, DataUtil.custIsAdmin());
-	    		
-	    	} catch(UnauthorizedException ue) {
-	        	displayError(ue.getMessage());
-	        	return;
-	        }
-			
-			CatalogPres selectedCatalog = ManageProductsData.INSTANCE.getSelectedCatalog();
-			if(selectedCatalog != null) {
-				ObservableList<ProductPres> list = ManageProductsData.INSTANCE.getProductsList(selectedCatalog);
-				maintainProductsWindow.setData(ManageProductsData.INSTANCE.getCatalogList(), list);
+			if (DataUtil.custIsAdmin()) {
+				try {
+		    		Authorization.checkAuthorization(maintainProductsWindow, DataUtil.custIsAdmin());
+		    		
+		    	} catch(UnauthorizedException ue) {
+		        	displayError(ue.getMessage());
+		        	return;
+		        }
+				
+				CatalogPres selectedCatalog = ManageProductsData.INSTANCE.getSelectedCatalog();
+				if(selectedCatalog != null) {
+					ObservableList<ProductPres> list = ManageProductsData.INSTANCE.getProductsList(selectedCatalog);
+					maintainProductsWindow.setData(ManageProductsData.INSTANCE.getCatalogList(), list);
+				}
+				maintainProductsWindow.show();  
+		        primaryStage.hide();
+			} else {
+				primaryStage.show();
+				startScreenCallback.displayError("You are not authorized to access this list");
 			}
-			maintainProductsWindow.show();  
-	        primaryStage.hide();
 		}
 		
 		public Text getMessageBar() {
