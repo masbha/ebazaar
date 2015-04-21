@@ -86,18 +86,29 @@ public class DbClassShoppingCart implements DbClass, DbClassShoppingCartForTest 
     
     //precondition: cart and custprofile has been stored as instance variable
     private void buildSaveCartQuery() {
-    	query =  "INSERT INTO shopcarttbl (shopcartid, custid,shipaddress1, " + 
-    		"shipaddress2, shipcity, shipstate, shipzipcode, billaddress1, " + 
-    		"billaddress2, billcity, billstate, billzipcode, nameoncard, " +
-    		"expdate,cardtype, cardnum, totalpriceamount, totalshipmentcost, "+ 
-    		"totaltaxamount, totalamountcharged) " +
-    		"VALUES (NULL, " + custProfile.getCustId() + ", '" + cart.getShippingAddress().getStreet() + "', '" + 
-    		   "" + cart.getShippingAddress().getCity() + "', '" + cart.getShippingAddress().getState() + "', '" +
-    		   cart.getShippingAddress().getZip() + "', '" + cart.getBillingAddress().getStreet() + "', '" + 
-    		   "" + "', '" + cart.getBillingAddress().getCity() + "', '" + cart.getBillingAddress().getState() + "', '" +
-    		   cart.getBillingAddress().getZip() + "', '" + cart.getPaymentInfo().getNameOnCard() + "', '" + cart.getPaymentInfo().getExpirationDate() + "', '" +
-    		   cart.getPaymentInfo().getCardType() + "', '" + cart.getPaymentInfo().getCardNum() + "', '" + (new Double(cart.getTotalPrice())).toString() + "',"  +
-    		   "'0.00', '0.00', '" + (new Double(cart.getTotalPrice())).toString() + "')";
+    	 query =  "INSERT INTO shopcarttbl (custid,shipaddress1, " + 
+
+    "shipaddress2, shipcity, shipstate, shipzipcode, billaddress1, " + 
+
+    "billaddress2, billcity, billstate, billzipcode, nameoncard, " +
+
+    "expdate,cardtype, cardnum, totalpriceamount, totalshipmentcost, "+ 
+
+    "totaltaxamount, totalamountcharged) " +
+
+    "VALUES (" + custProfile.getCustId() + ", '" + cart.getShippingAddress().getStreet() + "', '','" + 
+
+    	  "" + cart.getShippingAddress().getCity() + "', '" + cart.getShippingAddress().getState() + "', '" +
+
+    	  cart.getShippingAddress().getZip() + "', '" + cart.getBillingAddress().getStreet() + "', '" + 
+
+    	  "" + "', '" + cart.getBillingAddress().getCity() + "', '" + cart.getBillingAddress().getState() + "', '" +
+
+    	  cart.getBillingAddress().getZip() + "', '" + cart.getPaymentInfo().getNameOnCard() + "', '" + cart.getPaymentInfo().getExpirationDate() + "', '" +
+
+    	  cart.getPaymentInfo().getCardType() + "', '" + cart.getPaymentInfo().getCardNum() + "', '" + (new Double(cart.getTotalPrice())).toString() + "',"  +
+
+    	  "'0.00', '0.00', '" + (new Double(cart.getTotalPrice())).toString() + "')";
 
     }
     private void buildSaveCartItemQuery() {

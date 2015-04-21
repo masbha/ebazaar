@@ -34,6 +34,7 @@ import business.externalinterfaces.Product;
 import business.externalinterfaces.ShoppingCartSubsystem;
 import business.shoppingcartsubsystem.ShoppingCartSubsystemFacade;
 import business.usecasecontrol.BrowseAndSelectController;
+import business.usecasecontrol.CheckoutController;
 
 
 
@@ -264,8 +265,20 @@ public enum BrowseSelectUIControl {
 		
 		@Override
 		public void handle(ActionEvent evt) {
-			shoppingCartWindow.displayInfo("You need to implement this handler.");	
-		}	
+			shoppingCartWindow = ShoppingCartWindow.INSTANCE;		
+		
+				boolean isLoggedIn = DataUtil.isLoggedIn();
+				if (!isLoggedIn) {
+					LoginUIControl loginControl = new LoginUIControl(shoppingCartWindow,
+							primaryStage);
+					loginControl.startLogin();
+				}
+				else
+				{
+					BrowseAndSelectController.INSTANCE.saveCart();
+					shoppingCartWindow.displayInfo("Shopping cart is saved");
+				}
+			}
 	}
 	public SaveCartHandler getSaveCartHandler() {
 		return new SaveCartHandler();

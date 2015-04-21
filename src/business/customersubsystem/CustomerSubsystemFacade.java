@@ -59,7 +59,11 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 		loadDefaultPaymentInfo();
 		shoppingCartSubsystem = ShoppingCartSubsystemFacade.INSTANCE;
 		shoppingCartSubsystem.setCustomerProfile(customerProfile);
-		shoppingCartSubsystem.retrieveSavedCart();		
+		shoppingCartSubsystem.retrieveSavedCart();
+		ShoppingCart liveCart=shoppingCartSubsystem.getLiveCart();
+		setBillingAddressInCart(defaultBillAddress);
+		setPaymentInfoInCart(defaultPaymentInfo);
+		setShippingAddressInCart(defaultShipAddress);
 		loadOrderData();	
 		
     }
@@ -214,10 +218,7 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	@Override
 	public void submitOrder() throws BackendException {
 		LOG.info("submitOrder");
-		ShoppingCart liveCart=shoppingCartSubsystem.getLiveCart();
-		setBillingAddressInCart(defaultBillAddress);
-		setPaymentInfoInCart(defaultPaymentInfo);
-		setShippingAddressInCart(defaultShipAddress);
+		ShoppingCart liveCart=shoppingCartSubsystem.getLiveCart();		
 		orderSubsystem.submitOrder(liveCart);
 		
 	}
@@ -238,6 +239,7 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	@Override
 	public void saveShoppingCart() throws BackendException {
 		LOG.info("saveShoppingCart");
+	
 		shoppingCartSubsystem.saveLiveCart();
 		
 	}
