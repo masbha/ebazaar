@@ -39,6 +39,10 @@ class DbClassAddress implements DbClass, DbClassAddressForTest {
     private final String STATE = "state";
     private final String ZIP = "zip";
 	
+    public void setCustomerProfile(CustomerProfile cp)
+    {
+    	this.custProfile=cp;
+    }
     public void saveAddress(CustomerProfile custProfile) throws DatabaseException {
         this.custProfile = custProfile;
         queryType = SAVE;
@@ -66,14 +70,34 @@ class DbClassAddress implements DbClass, DbClassAddressForTest {
     }
     
     public List<Address> getAddressList() {
+    	try {
+			readAllAddresses(custProfile);
+		} catch (DatabaseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         return addressList;
     }
     
     AddressImpl getDefaultShipAddress(){
+    	if(defaultShipAddress==null)
+			try {
+				readDefaultShipAddress(custProfile);
+			} catch (DatabaseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         return this.defaultShipAddress;
     }
     
-    AddressImpl getDefaultBillAddress() {
+    AddressImpl getDefaultBillAddress() {    
+    	if(defaultBillAddress==null	)
+			try {
+				readDefaultBillAddress(custProfile);
+			} catch (DatabaseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         return this.defaultBillAddress;
     }
 	
@@ -161,7 +185,7 @@ class DbClassAddress implements DbClass, DbClassAddressForTest {
        //implement
     	 if(rs != null){
              try {
-                 while(rs.next()) {
+                 if(rs.next()) {
                 	 defaultShipAddress = new AddressImpl();
                      String str = rs.getString("shipaddress1") + rs.getString("shipaddress2");
                      defaultShipAddress.setStreet(str);
@@ -180,7 +204,7 @@ class DbClassAddress implements DbClass, DbClassAddressForTest {
         //implement    
     	 if(rs != null){
              try {
-                 while(rs.next()) {
+                 if(rs.next()) {
                 	 defaultBillAddress = new AddressImpl();
                      String str = rs.getString("billaddress1") + rs.getString("billaddress2");
                      defaultBillAddress.setStreet(str);

@@ -45,19 +45,23 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
     public void initializeCustomer(Integer id, int authorizationLevel) 
     		throws BackendException {
     	LOG.info("initializeCustomer, with id:"+id);
-    	dbAddress=new DbClassAddress();
+    	dbAddress=new DbClassAddress();    	
     	dbCreditCard=new DbClassCreditCard();
     	creditVerification=new CreditVerificationFacade();
     	
 	    boolean isAdmin = (authorizationLevel >= 1);
 		loadCustomerProfile(id, isAdmin);
+		dbAddress.setCustomerProfile(customerProfile);
+		dbCreditCard.setCustomerId(customerProfile.getCustId());
+		
 		loadDefaultShipAddress();
 		loadDefaultBillAddress();
 		loadDefaultPaymentInfo();
 		shoppingCartSubsystem = ShoppingCartSubsystemFacade.INSTANCE;
 		shoppingCartSubsystem.setCustomerProfile(customerProfile);
 		shoppingCartSubsystem.retrieveSavedCart();
-		loadOrderData();
+		loadOrderData();	
+		
     }
     
     void loadCustomerProfile(int id, boolean isAdmin) throws BackendException {
@@ -74,16 +78,15 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 		}
     }
     void loadDefaultShipAddress() throws BackendException {
-    	LOG.info("loadDefaultShipAddress");
-    	
+    	LOG.info("loadDefaultShipAddress");    	
     	defaultShipAddress= dbAddress.getDefaultShipAddress();
     }
 	void loadDefaultBillAddress() throws BackendException {
-		LOG.info("loadDefaultBillAddress");
+		LOG.info("loadDefaultBillAddress");		
     	defaultBillAddress= dbAddress.getDefaultBillAddress();
 	}
 	void loadDefaultPaymentInfo() throws BackendException {	
-		LOG.info("loadDefaultPaymentInfo");
+		LOG.info("loadDefaultPaymentInfo");		
 		defaultPaymentInfo=dbCreditCard.getDefaultPaymentInfo();
 	}
 	void loadOrderData() throws BackendException {
