@@ -70,22 +70,25 @@ public enum CheckoutUIControl {
 		}
 		@Override
 		public void handle(ActionEvent evt) {
-			ShoppingCartWindow.INSTANCE.clearMessages();
-			ShoppingCartWindow.INSTANCE.setTableAccessByRow();
-			ShoppingCartWindow.INSTANCE.hide();
-			
 			boolean rulesOk = true;
 			/* check that cart is not empty before going to next screen */	
 			
-//			try {
-//				usecaseControl.runShoppingCartRules();
-//			} catch (RuleException e) {
-//				//handle
-//			} catch (BusinessException e) {
-//				//handle
-//			}
+			try {
+				CheckoutController.INSTANCE.runShoppingCartRules();
+			} catch (RuleException e) {
+				rulesOk=false;
+				ShoppingCartWindow.INSTANCE.displayError("Cart is empty");
+				//ShoppingCartWindow.INSTANCE.show();
+			} catch (BusinessException e) {
+				rulesOk=false;
+				ShoppingCartWindow.INSTANCE.displayError("Cart is empty");
+				//ShoppingCartWindow.INSTANCE.show();
+			}
 	
 			if (rulesOk) {
+				ShoppingCartWindow.INSTANCE.clearMessages();
+				ShoppingCartWindow.INSTANCE.setTableAccessByRow();
+				ShoppingCartWindow.INSTANCE.hide();
 				boolean isLoggedIn = DataUtil.isLoggedIn();
 				shippingBillingWindow = new ShippingBillingWindow();
 				if (!isLoggedIn) {
