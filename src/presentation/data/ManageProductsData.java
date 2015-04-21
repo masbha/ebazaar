@@ -164,16 +164,24 @@ public enum ManageProductsData {
 		return catPres;
 	}
 
-	public void addToCatalogList(CatalogPres catPres) {
+	public boolean addToCatalogList(CatalogPres catPres) {
 		ObservableList<CatalogPres> newCatalogs = FXCollections
 				.observableArrayList(catPres);
-
-		// Place the new item at the bottom of the list
-		// catalogList is guaranteed to be non-null
-		boolean result = catalogList.addAll(newCatalogs);
-		if (result) { //must make this catalog accessible in productsMap
-			productsMap.put(catPres, FXCollections.observableList(new ArrayList<ProductPres>()));
+		boolean result = false;
+		ManageProductsController mpc = new ManageProductsController();
+		try {
+			mpc.saveCatalog(catPres.getCatalog());
+			// Place the new item at the bottom of the list
+			// catalogList is guaranteed to be non-null
+			result = catalogList.addAll(newCatalogs);
+			if (result) { // must make this catalog accessible in productsMap
+				productsMap.put(catPres, FXCollections
+						.observableList(new ArrayList<ProductPres>()));
+			}
+		} catch (BackendException e) {
+			//System.out.println("This is message::::: " + e.getMessage());					
 		}
+		return result;
 	}
 
 	/**

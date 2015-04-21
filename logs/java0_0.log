@@ -1068,3 +1068,81 @@
   <thread>13</thread>
   <message>Returning a connection to pool</message>
 </record>
+<record>
+  <date>2015-04-21T01:33:11</date>
+  <millis>1429597991110</millis>
+  <sequence>158</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:33:11</date>
+  <millis>1429597991111</millis>
+  <sequence>159</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>doUpdate</method>
+  <thread>13</thread>
+  <message>query: DELETE FROM CatalogType WHERE catalogid='18'</message>
+</record>
+<record>
+  <date>2015-04-21T01:33:11</date>
+  <millis>1429597991167</millis>
+  <sequence>160</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>doUpdate</method>
+  <thread>13</thread>
+  <message>No generated key for DELETE FROM CatalogType WHERE catalogid='18'</message>
+</record>
+<record>
+  <date>2015-04-21T01:33:11</date>
+  <millis>1429597991199</millis>
+  <sequence>161</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:33:11</date>
+  <millis>1429597991202</millis>
+  <sequence>164</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:33:11</date>
+  <millis>1429597991202</millis>
+  <sequence>165</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM CatalogType</message>
+</record>
+<record>
+  <date>2015-04-21T01:33:11</date>
+  <millis>1429597991204</millis>
+  <sequence>166</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+</log>

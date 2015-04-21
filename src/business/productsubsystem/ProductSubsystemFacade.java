@@ -91,7 +91,9 @@ public class ProductSubsystemFacade implements ProductSubsystem {
 	public void saveNewCatalog(Catalog catalog) throws BackendException {
 		try {
 			DbClassCatalog dbclass = new DbClassCatalog();
-			dbclass.saveNewCatalog(catalog.getName());
+			int catalogId = dbclass.saveNewCatalog(catalog);
+			catalog.setId(catalogId);
+			
 		}  catch(DatabaseException e) {
     		throw new BackendException(e);
     	}

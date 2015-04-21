@@ -3,6 +3,7 @@ package business.productsubsystem;
 import java.sql.ResultSet;
 import java.util.logging.Logger;
 
+import business.externalinterfaces.Catalog;
 import middleware.DbConfigProperties;
 import middleware.dataaccess.DataAccessSubsystemFacade;
 import middleware.exceptions.DatabaseException;
@@ -24,10 +25,11 @@ public class DbClassCatalog implements DbClass {
     private final String SAVE = "Save";
     private final String DELETE = "Delete";
     
-    public void saveNewCatalog(String name) throws DatabaseException {
-    	this.catalogName = name;
+    public int saveNewCatalog(Catalog catalog) throws DatabaseException {
+    	this.catalogName = catalog.getName();
+    	this.catalogId = catalog.getId();
     	queryType = SAVE;
-    	dataAccessSS.saveWithinTransaction(this);  	
+    	return dataAccessSS.saveWithinTransaction(this);    	
     }
      
 	public void buildQuery() throws DatabaseException {
@@ -40,9 +42,9 @@ public class DbClassCatalog implements DbClass {
 	
 	void buildSaveQuery() throws DatabaseException {
 		query = "INSERT into CatalogType "+
-		"(catalogid,catalogname) " +
-		"VALUES(NULL,'"+
-				  catalogName+"')"; 
+				"(catalogid,catalogname) " +
+				"VALUES(" + (catalogId > 0 ? catalogId : "NULL") + ",'"+
+						  catalogName+"')"; 
 	}
 	
 	void buildDeleteQuery() {
