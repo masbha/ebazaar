@@ -22,8 +22,22 @@ public class DbClassCreditCard implements DbClass{
     private String queryType;
     private CreditCardImpl defaultCreditCard;
     
+    public void setCustomerId(Integer cId)
+    {
+    	this.custId=cId	;
+    }
+    
     public CreditCardImpl getDefaultPaymentInfo()
     {
+    	if(defaultCreditCard==null)
+    	{
+    		try {
+				readDefaultPayment(custId);
+			} catch (DatabaseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
     	return defaultCreditCard;
     }
     

@@ -19,13 +19,14 @@ import business.externalinterfaces.Address;
 import business.externalinterfaces.CartItem;
 import business.externalinterfaces.CreditCard;
 import business.externalinterfaces.CustomerProfile;
+import business.externalinterfaces.DbClassOrderForTest;
 import business.externalinterfaces.Order;
 import business.externalinterfaces.OrderItem;
 import business.externalinterfaces.ShoppingCart;
 
 
 
-class DbClassOrder implements DbClass {
+class DbClassOrder implements DbClass,DbClassOrderForTest {
 	private static final Logger LOG = 
 		Logger.getLogger(DbClassOrder.class.getPackage().getName());
 	private DataAccessSubsystem dataAccessSS = 
@@ -253,5 +254,13 @@ class DbClassOrder implements DbClass {
      
     public void setOrderId(Integer orderId){
         this.orderId = orderId;       
-    }   
+    }
+
+	@Override
+	public List<Integer> readAllOrders(CustomerProfile custProfile)
+			throws DatabaseException {
+		// TODO Auto-generated method stub
+		return getAllOrderIds(custProfile);
+		
+	}   
 }

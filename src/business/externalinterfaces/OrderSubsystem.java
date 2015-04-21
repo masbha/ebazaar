@@ -18,6 +18,10 @@ public interface OrderSubsystem {
 //	 * from the passed in shopping cart and saves to database using data access subsystem
 //	 */ 
     void submitOrder(ShoppingCart shopCart) throws BackendException;
+    
+    
+  //TESTING
+    public DbClassOrderForTest getGenericDbClassOrder();
 	
 	
 
