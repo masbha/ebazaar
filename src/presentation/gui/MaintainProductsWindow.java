@@ -196,29 +196,7 @@ public class MaintainProductsWindow extends Stage implements MessageableWindow {
 		btnBox.getChildren().add(addButton);
 		btnBox.getChildren().add(deleteButton);
 		btnBox.getChildren().add(backButton);
-	
-//		deleteButton.setOnAction(evt -> {
-//			TableUtil.selectByRow(table);
-//			CatalogPres selectedCatalog = ManageProductsData.INSTANCE.getSelectedCatalog();
-//		    ObservableList<ProductPres> tableItems = ManageProductsData.INSTANCE.getProductsList(selectedCatalog);
-//		    ObservableList<Integer> selectedIndices = table.getSelectionModel().getSelectedIndices();
-//		    ObservableList<ProductPres> selectedItems = table.getSelectionModel()
-//					.getSelectedItems();
-//		    if(tableItems.isEmpty()) {
-//		    	messageBar.setText("Nothing to delete!");
-//		    } else if (selectedIndices == null || selectedIndices.isEmpty()) {
-//		    	messageBar.setText("Please select a row.");
-//		    } else {
-//		    	boolean result =  ManageProductsData.INSTANCE.removeFromProductList(selectedCatalog, selectedItems);
-//			    if (result) {
-//			    	table.setItems(ManageProductsData.INSTANCE.getProductsList(selectedCatalog));
-//			    	clearMessages();
-//			    } else {
-//			    	displayInfo("No items deleted.");
-//			    }
-//				
-//		    }
-//		});
+
 		backButton.setOnAction(ManageProductsUIControl.INSTANCE.getBackFromProdsButtonHandler());
 		deleteButton.setOnAction(ManageProductsUIControl.INSTANCE.getDeleteProductButtonHandler());
 			

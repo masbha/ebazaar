@@ -73,9 +73,4 @@ public class ManageProductsController   {
     	
     }
     
-//    public boolean isAdmin() {
-//    	CustomerSubsystem cust = (CustomerSubsystem)SessionCache.getInstance().get(BusinessConstants.CUSTOMER);
-//    	return cust.isAdmin();
-//    }
-    
 }
