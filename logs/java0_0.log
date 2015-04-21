@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259162</millis>
+  <sequence>23</sequence>
+  <logger>business</logger>
+  <level>INFO</level>
+  <class>business.DbClassLogin</class>
+  <method>authenticate</method>
+  <thread>13</thread>
+  <message>Authenticating</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259685</millis>
+  <sequence>24</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>createConnection</method>
+  <thread>13</thread>
+  <message>Adding new connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259706</millis>
+  <sequence>25</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>createConnection</method>
+  <thread>13</thread>
+  <message>Adding new connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259735</millis>
+  <sequence>26</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>createConnection</method>
+  <thread>13</thread>
+  <message>Adding new connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259769</millis>
+  <sequence>27</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>createConnection</method>
+  <thread>13</thread>
+  <message>Adding new connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259770</millis>
+  <sequence>28</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259770</millis>
+  <sequence>29</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM Customer WHERE custid = 2 AND password = '2'</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259776</millis>
+  <sequence>30</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259777</millis>
+  <sequence>31</sequence>
+  <logger>business</logger>
+  <level>INFO</level>
+  <class>business.DbClassLogin</class>
+  <method>getAuthorizationLevel</method>
+  <thread>13</thread>
+  <message>authorizationLevel = 1</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259842</millis>
+  <sequence>32</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259842</millis>
+  <sequence>33</sequence>
+  <logger>business.customersubsystem</logger>
+  <level>INFO</level>
+  <class>business.customersubsystem.DbClassCustomerProfile</class>
+  <method>buildQuery</method>
+  <thread>13</thread>
+  <message>Query for Read: null</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259843</millis>
+  <sequence>34</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT custid,fname,lname FROM Customer WHERE custid = 2</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259851</millis>
+  <sequence>35</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259852</millis>
+  <sequence>36</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259853</millis>
+  <sequence>37</sequence>
+  <logger>business.customersubsystem</logger>
+  <level>INFO</level>
+  <class>business.customersubsystem.DbClassCreditCard</class>
+  <method>buildQuery</method>
+  <thread>13</thread>
+  <message>Query for Read: null</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259854</millis>
+  <sequence>38</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: select nameoncard,expdate,cardtype,cardnum  FROM Customer WHERE custid = 2</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259860</millis>
+  <sequence>39</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259890</millis>
+  <sequence>40</sequence>
+  <logger>business.shoppingcartsubsystem</logger>
+  <level>INFO</level>
+  <class>business.shoppingcartsubsystem.ShoppingCartSubsystemFacade</class>
+  <method>retrieveSavedCart</method>
+  <thread>13</thread>
+  <message>Trying to retrieve saved cart.</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259897</millis>
+  <sequence>41</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259899</millis>
+  <sequence>42</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT shopcartid FROM ShopCartTbl WHERE custid = 2</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259900</millis>
+  <sequence>43</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM shopcarttbl WHERE shopcartid = null</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259900</millis>
+  <sequence>44</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM shopcartitem WHERE shopcartid = null</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259902</millis>
+  <sequence>45</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259944</millis>
+  <sequence>46</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259945</millis>
+  <sequence>47</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT orderid FROM Ord WHERE custid = 2</message>
+</record>
+<record>
+  <date>2015-04-21T01:20:59</date>
+  <millis>1429597259946</millis>
+  <sequence>48</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260119</millis>
+  <sequence>49</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>createConnection</method>
+  <thread>13</thread>
+  <message>Adding new connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260146</millis>
+  <sequence>50</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>createConnection</method>
+  <thread>13</thread>
+  <message>Adding new connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260161</millis>
+  <sequence>51</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>createConnection</method>
+  <thread>13</thread>
+  <message>Adding new connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260178</millis>
+  <sequence>52</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>createConnection</method>
+  <thread>13</thread>
+  <message>Adding new connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260179</millis>
+  <sequence>53</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260179</millis>
+  <sequence>54</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM CatalogType</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260213</millis>
+  <sequence>55</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260231</millis>
+  <sequence>56</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260231</millis>
+  <sequence>57</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM CatalogType</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260236</millis>
+  <sequence>58</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260239</millis>
+  <sequence>59</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260240</millis>
+  <sequence>60</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM CatalogType</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260241</millis>
+  <sequence>61</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260249</millis>
+  <sequence>62</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260250</millis>
+  <sequence>63</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM Product WHERE catalogid = 1</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260308</millis>
+  <sequence>64</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260318</millis>
+  <sequence>65</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260319</millis>
+  <sequence>66</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM CatalogType</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260320</millis>
+  <sequence>67</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260321</millis>
+  <sequence>68</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260322</millis>
+  <sequence>69</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM Product WHERE catalogid = 2</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260323</millis>
+  <sequence>70</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260325</millis>
+  <sequence>71</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260325</millis>
+  <sequence>72</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM CatalogType</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260326</millis>
+  <sequence>73</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260327</millis>
+  <sequence>74</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260327</millis>
+  <sequence>75</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM Product WHERE catalogid = 3</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260328</millis>
+  <sequence>76</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260329</millis>
+  <sequence>77</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260330</millis>
+  <sequence>78</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM CatalogType</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260332</millis>
+  <sequence>79</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260333</millis>
+  <sequence>80</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260333</millis>
+  <sequence>81</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM Product WHERE catalogid = 18</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260334</millis>
+  <sequence>82</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260336</millis>
+  <sequence>83</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260336</millis>
+  <sequence>84</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM CatalogType</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260337</millis>
+  <sequence>85</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260339</millis>
+  <sequence>86</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260339</millis>
+  <sequence>87</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM Product WHERE catalogid = 19</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260340</millis>
+  <sequence>88</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260341</millis>
+  <sequence>89</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260342</millis>
+  <sequence>90</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM CatalogType</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260343</millis>
+  <sequence>91</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260344</millis>
+  <sequence>92</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260345</millis>
+  <sequence>93</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM Product WHERE catalogid = 20</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260346</millis>
+  <sequence>94</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260347</millis>
+  <sequence>95</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260347</millis>
+  <sequence>96</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM CatalogType</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260348</millis>
+  <sequence>97</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260350</millis>
+  <sequence>98</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>getConnection</method>
+  <thread>13</thread>
+  <message>Returning a live connection from the pool</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260350</millis>
+  <sequence>99</sequence>
+  <logger>middleware.dataaccess.DataAccessUtil</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.DataAccessUtil</class>
+  <method>runQuery</method>
+  <thread>13</thread>
+  <message>Executing query: SELECT * FROM CatalogType</message>
+</record>
+<record>
+  <date>2015-04-21T01:21:00</date>
+  <millis>1429597260352</millis>
+  <sequence>100</sequence>
+  <logger>middleware.dataaccess</logger>
+  <level>INFO</level>
+  <class>middleware.dataaccess.SimpleConnectionPool</class>
+  <method>returnToPool</method>
+  <thread>13</thread>
+  <message>Returning a connection to pool</message>
+</record>
+</log>
