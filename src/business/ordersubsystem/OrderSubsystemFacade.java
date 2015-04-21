@@ -92,7 +92,7 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 	public void submitOrder(ShoppingCart shopCart) throws BackendException {
 		// TODO Auto-generated method stub
 		try{
-			DbClassOrder dbClass = new DbClassOrder(custProfile);
+			DbClassOrder dbClass = new DbClassOrder(new OrderImpl(),custProfile);
 			dbClass.submitOrder(shopCart);
 		}catch(DatabaseException de){
 			throw new BackendException(de.getMessage());
