@@ -216,20 +216,18 @@ public enum ManageProductsUIControl {
 			}
 			else {
 				String idNewVal = addCatalogPopup.getId();
-				if (idNewVal.equals("0")) {
-					idNewVal = DefaultData.generateId(10);
-				}
-				try {
-					Catalog newCat = mpc.createCatalog(Integer.parseInt(idNewVal), addCatalogPopup.getName());
-					mpc.saveCatalog(newCat);
-					CatalogPres catPres = new CatalogPres();
-					catPres.setCatalog(newCat);
-					maintainCatalogsWindow.addItem(catPres);
+//				if (idNewVal.equals("0")) {
+//					idNewVal = DefaultData.generateId(10);
+//				}
+				Catalog newCat = mpc.createCatalog(Integer.parseInt(idNewVal), addCatalogPopup.getName());					
+				//mpc.saveCatalog(newCat);
+				CatalogPres catPres = new CatalogPres();
+				catPres.setCatalog(newCat);
+				if (maintainCatalogsWindow.addItem(catPres)) {
 					addCatalogPopup.setMessageBar("");
 					addCatalogPopup.hide();
-				} catch (BackendException be) {
+				} else {
 					addCatalogPopup.setMessageBar("Catalog saving fails");
-					System.out.println("Catalog save fail : " + be.getMessage());
 				}
 				
 			}	   

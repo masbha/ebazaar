@@ -85,10 +85,11 @@ public class MaintainCatalogsWindow extends Stage implements MessageableWindow {
 		table.setItems(items);
 	}
 	
-	public void addItem(CatalogPres item) {
-		ManageProductsData.INSTANCE.addToCatalogList(item);
+	public boolean addItem(CatalogPres item) {
+		boolean result = ManageProductsData.INSTANCE.addToCatalogList(item);
 		setData(ManageProductsData.INSTANCE.getCatalogList());
 		TableUtil.refreshTable(table, ManageProductsData.INSTANCE.getManageCatalogsSynchronizer());
+		return result;
 	}
 	
 	
