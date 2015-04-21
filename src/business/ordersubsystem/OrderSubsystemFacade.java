@@ -96,6 +96,7 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 			dbClass.submitOrder(shopCart);
 		}catch(DatabaseException de){
 			throw new BackendException(de.getMessage());
+		
 		}
 		
 	}

@@ -1,8 +1,10 @@
 
 package business.ordersubsystem;
 
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -81,20 +83,34 @@ class DbClassOrder implements DbClass,DbClassOrderForTest {
     
     // Precondition: CustomerProfile has been set by the constructor
     void submitOrder(ShoppingCart shopCart) throws DatabaseException {
-    	//implement - Tasid
-    	order.setShipAddress(shopCart.getShippingAddress());
-    	order.setBillAddress(shopCart.getBillingAddress());
-    	order.setPaymentInfo(shopCart.getPaymentInfo());
-    	
-    	order.setOrderId(submitOrderData());
-    	
+    	//implement - Tasid   	
+    	Order ord = new OrderImpl();
+    	Date dNow = new Date();
+    	SimpleDateFormat ft = new SimpleDateFormat ("MM/dd/yyyy");        
+    	ord.setDate(GuiUtils.localDateForString(ft.format(dNow).toString()) );
+
+    	ord.setShipAddress(shopCart.getShippingAddress());
+    	ord.setBillAddress(shopCart.getBillingAddress());
+    	ord.setPaymentInfo(shopCart.getPaymentInfo());
+
+    	this.order = ord;
+    	queryType = SUBMIT_ORDER;
+    	int ordId= dataAccessSS.saveWithinTransaction(this);
+
     	List <CartItem> cartItemList = shopCart.getCartItems();
-    	
-    	orderItem.setOrderItemId(order.getOrderId()); 
+    	orderItem = new OrderItemImpl();
+    	orderItem.setOrderId(ordId); 
     	for(CartItem cartItem:cartItemList){
     		orderItem.setProductId(cartItem.getProductid());
-    		orderItem.setQuantity(Integer.parseInt(cartItem.getQuantity()));
-    		double unitPrice = Integer.parseInt(cartItem.getTotalprice())/Integer.parseInt(cartItem.getQuantity());
+    		double quntity = Double.parseDouble(cartItem.getQuantity());    	
+    		Double quntity1 = new Double(quntity);
+
+    		orderItem.setQuantity(quntity1.intValue());  	
+
+    		double itemTotalPrice = new Double(Double.parseDouble(cartItem.getTotalprice()));    	
+    		Double itemTotalPrice1 = new Double(itemTotalPrice);
+
+    		double unitPrice = (double)(itemTotalPrice1.intValue()/quntity1.intValue());
     		orderItem.setUnitPrice(unitPrice);
     		submitOrderItem(orderItem);
     	}
@@ -162,18 +178,18 @@ class DbClassOrder implements DbClass,DbClassOrderForTest {
                   cc.getCardNum()+"','"+
                   cc.getCardType()+"','"+
                   cc.getExpirationDate()+"','"+
-                  order.getOrderDate()+"',"+
-                  order.getTotalPrice()+")";       
+                  GuiUtils.localDateAsString(order.getOrderDate())+"',"+
+                  order.getTotalPrice()+")";
     }
 	
     private void buildSaveOrderItemQuery(){
     	//implement - Tasid
-    	query = "INSERT into orderItem "+
+    	query = "INSERT into orderitem "+
     	        "(orderid, productid, quantity, totalprice)" +
-    	        "VALUES(" + orderItem.getOrderId() + ",'"+
-    	                  orderItem.getProductId()+"','"+
-    	                  orderItem.getQuantity()+"','"+
-    	                  order.getTotalPrice()+")"; 
+    	        "VALUES(" + orderItem.getOrderId() + ","+
+    	                  orderItem.getProductId()+","+
+    	                  orderItem.getQuantity()+","+
+    	                  orderItem.getTotalPrice()+")"; 
     }
 
     private void buildGetOrderDataQuery() {
