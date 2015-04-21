@@ -303,6 +303,11 @@ public enum CheckoutUIControl {
 	private class SubmitHandler implements EventHandler<ActionEvent> {
 		@Override
 		public void handle(ActionEvent evt) {
+			try {
+				CheckoutController.INSTANCE.submitFinalOrder();
+			} catch (BackendException e) {
+				finalOrderWindow.displayError(ErrorMessages.DATABASE_ERROR);
+			}
 			orderCompleteWindow = new OrderCompleteWindow();
 			orderCompleteWindow.show();
 			finalOrderWindow.clearMessages();
