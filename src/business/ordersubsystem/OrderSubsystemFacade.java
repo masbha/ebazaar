@@ -31,12 +31,15 @@ public class OrderSubsystemFacade implements OrderSubsystem {
     	return null;
     }
     
-    /** to create an Order object from outside the subsystem */
-    public static Order createOrder(Integer orderId, String orderDate, String totalPrice) {
-    	//Added - Tasid
-    	LocalDate od = LocalDate.parse(orderDate, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-    	return new OrderImpl(orderId, od);
-//    	return null;
+    /** to create an Order object from outside the subsystem */    
+    public static Order createOrder(Integer orderId, LocalDate orderDate, List<OrderItem> orderItems) {
+    	OrderImpl order = new OrderImpl();
+    	//autoboxing of Integer will throw an exception if orderId is null
+    	if (orderId != null) order.setOrderId(orderId);
+    	order.setDate(orderDate);
+    	order.setOrderItems(orderItems);
+    	return order;
+    	
     }
     
     ///////////// Methods internal to the Order Subsystem -- NOT public
