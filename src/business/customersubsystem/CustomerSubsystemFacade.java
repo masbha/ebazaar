@@ -192,22 +192,22 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 	@Override
 	public void setShippingAddressInCart(Address addr) {
 		LOG.info("setShippingAddressInCart");
-		//need to discuss, the ShoppingCart interface doesn't have method to set address
-		shoppingCartSubsystem.getLiveCart();
+		
+		shoppingCartSubsystem.getLiveCart().setShipAddress(addr);;
 		
 	}
 
 	@Override
 	public void setBillingAddressInCart(Address addr) {
 		LOG.info("setBillingAddressInCart");
-		//need to discuss, the ShoppingCart interface doesn't have method to set address
+		shoppingCartSubsystem.getLiveCart().setBillAddress(addr);
 		
 	}
 
 	@Override
 	public void setPaymentInfoInCart(CreditCard cc) {
 		LOG.info("setPaymentInfoInCart");
-		//need to discuss, the ShoppingCart interface doesn't have method to set paymentinfo
+		shoppingCartSubsystem.getLiveCart().setPaymentInfo(cc);
 		
 	}
 
@@ -221,8 +221,7 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 
 	@Override
 	public void refreshAfterSubmit() throws BackendException {
-		// TODO Auto-generated method stub
-		//who will invoke this method?
+		shoppingCartSubsystem.clearLiveCart();
 		
 	}
 
