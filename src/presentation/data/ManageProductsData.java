@@ -153,7 +153,7 @@ public enum ManageProductsData {
 	/** Delivers the already-populated catalogList to the UI */
 	public ObservableList<CatalogPres> getCatalogList() {
 		//TODO: will be implemented different way
-		catalogList = readCatalogsFromDataSource();
+		//catalogList = readCatalogsFromDataSource();
 		return catalogList;
 	}
 
