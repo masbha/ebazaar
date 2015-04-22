@@ -2,6 +2,8 @@ package presentation.control;
 
 import java.util.logging.Logger;
 
+import javax.media.jai.operator.MeanDescriptor;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -77,11 +79,11 @@ public enum CheckoutUIControl {
 				CheckoutController.INSTANCE.runShoppingCartRules();
 			} catch (RuleException e) {
 				rulesOk=false;
-				ShoppingCartWindow.INSTANCE.displayError("Cart is empty");
+				ShoppingCartWindow.INSTANCE.displayError(ErrorMessages.EMPTY_CART);
 				//ShoppingCartWindow.INSTANCE.show();
 			} catch (BusinessException e) {
 				rulesOk=false;
-				ShoppingCartWindow.INSTANCE.displayError("Cart is empty");
+				ShoppingCartWindow.INSTANCE.displayError(ErrorMessages.EMPTY_CART );
 				//ShoppingCartWindow.INSTANCE.show();
 			}
 	

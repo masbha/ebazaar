@@ -13,5 +13,6 @@ public class ErrorMessages {
 		"You are not authorized to access this page.";
 	public static final String DATABASE_ERROR =
 		"A database error has occurred. Please try again later.";
+	public static final String EMPTY_CART = "Shopping cart is empty";
 	
 }

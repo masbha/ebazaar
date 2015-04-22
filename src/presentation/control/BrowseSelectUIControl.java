@@ -218,6 +218,7 @@ public enum BrowseSelectUIControl {
 			BrowseSelectData.INSTANCE.addToCart(cartPres);
 			 
 			shoppingCartWindow = ShoppingCartWindow.INSTANCE;
+			shoppingCartWindow.clearMessages();
 			shoppingCartWindow.setData(BrowseSelectData.INSTANCE.getCartData());
 			shoppingCartWindow.setPrimaryStage(primaryStage);
 			shoppingCartWindow.show();
