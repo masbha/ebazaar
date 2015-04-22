@@ -13,6 +13,7 @@ import presentation.data.BrowseSelectData;
 import presentation.data.CartItemPres;
 import presentation.data.CatalogPres;
 import presentation.data.DataUtil;
+import presentation.data.ErrorMessages;
 import presentation.data.ProductPres;
 import presentation.gui.CatalogListWindow;
 import presentation.gui.OrdersWindow;
@@ -277,8 +278,28 @@ public enum BrowseSelectUIControl {
 				}
 				else
 				{
-					BrowseAndSelectController.INSTANCE.saveCart();
-					shoppingCartWindow.displayInfo("Shopping cart is saved");
+					boolean rulesOk = true;
+					/* check that cart is not empty before going to next screen */	
+					
+					try {
+						CheckoutController.INSTANCE.runShoppingCartRules();
+					} catch (RuleException e) {
+						rulesOk=false;
+						shoppingCartWindow.displayError(ErrorMessages.EMPTY_CART);
+						//ShoppingCartWindow.INSTANCE.show();
+					} catch (BusinessException e) {
+						rulesOk=false;
+						shoppingCartWindow.displayError(ErrorMessages.EMPTY_CART );
+						//ShoppingCartWindow.INSTANCE.show();
+					}
+					
+					if(rulesOk)
+					{
+						BrowseAndSelectController.INSTANCE.saveCart();
+						shoppingCartWindow.displayInfo("Shopping cart is saved");
+					}
+					
+					
 				}
 			}
 	}

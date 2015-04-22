@@ -2,7 +2,7 @@ package presentation.control;
 
 import java.util.logging.Logger;
 
-import javax.media.jai.operator.MeanDescriptor;
+
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
