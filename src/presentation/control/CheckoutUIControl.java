@@ -317,6 +317,9 @@ public enum CheckoutUIControl {
 			orderCompleteWindow.show();
 			finalOrderWindow.clearMessages();
 			finalOrderWindow.hide();
+			
+			// Just added to clear the shopping cart window
+			ShoppingCartWindow.INSTANCE.ClearCartItems();
 		}
 
 	}

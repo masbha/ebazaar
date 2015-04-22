@@ -69,7 +69,7 @@ public interface DefaultShoppingCartWindow extends MessageableWindow, Modifiable
 			   //String newTotal = GuiUtils.formatPrice(quant * price);
 			   clearMessages();
 			   instance.setQuantity(new SimpleStringProperty(t.getNewValue()));
-			   
+			   //BrowseSelectData.INSTANCE.updateShoppingCart();
 			   double sumTotal = GuiUtils.computeTotalInTable(getTable());
 			   setTotalInCart(GuiUtils.formatPrice(sumTotal));
 		   }   

@@ -103,6 +103,10 @@ public class ShoppingCartWindow extends Stage implements DefaultShoppingCartWind
 		proceedButton.setOnAction(CheckoutUIControl.INSTANCE.getProceedFromCartToShipBill());
 		return btnBox;
 	}
+	public void ClearCartItems() {
+		 table.getItems().clear();
+		
+	}
 	
 	
 	

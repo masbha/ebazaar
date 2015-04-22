@@ -220,6 +220,7 @@ public class CustomerSubsystemFacade implements CustomerSubsystem {
 		LOG.info("submitOrder");
 		ShoppingCart liveCart=shoppingCartSubsystem.getLiveCart();		
 		orderSubsystem.submitOrder(liveCart);
+		refreshAfterSubmit();
 		loadOrderData();
 		
 	}
