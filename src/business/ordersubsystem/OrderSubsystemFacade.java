@@ -33,6 +33,7 @@ public class OrderSubsystemFacade implements OrderSubsystem {
     
     /** to create an Order object from outside the subsystem */    
     public static Order createOrder(Integer orderId, LocalDate orderDate, List<OrderItem> orderItems) {
+    	LOG.info("createOrder");
     	OrderImpl order = new OrderImpl();
     	//autoboxing of Integer will throw an exception if orderId is null
     	if (orderId != null) order.setOrderId(orderId);
@@ -44,17 +45,19 @@ public class OrderSubsystemFacade implements OrderSubsystem {
     
     ///////////// Methods internal to the Order Subsystem -- NOT public
     List<Integer> getAllOrderIds() throws DatabaseException {
-        
+    	LOG.info("getAllOrderIds");
         DbClassOrder dbClass = new DbClassOrder();
         return dbClass.getAllOrderIds(custProfile);
         
     }
     List<OrderItem> getOrderItems(Integer orderId) throws DatabaseException {
+    	LOG.info("getOrderItems");
         DbClassOrder dbClass = new DbClassOrder();
         return dbClass.getOrderItems(orderId);
     }
     
     OrderImpl getOrderData(Integer orderId) throws DatabaseException {
+    	LOG.info("getOrderData");
     	DbClassOrder dbClass = new DbClassOrder();
     	return dbClass.getOrderData(orderId);
     }
@@ -64,9 +67,10 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 	@Override
 	//Implemented - Tasid
 	public List<Order> getOrderHistory() throws BackendException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
 		List<Order> orderHistory = new ArrayList<Order>();
 		try{
+			LOG.info("Trying to get order history");
 			List<Integer> allOrderIds= getAllOrderIds();
 			for(int orderId:allOrderIds){
 				
@@ -79,6 +83,7 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 			
 			
 		}catch(DatabaseException de){
+			LOG.warning("Failed to load order history");
 			throw new BackendException(de.getMessage());
 		}
 		
@@ -90,11 +95,13 @@ public class OrderSubsystemFacade implements OrderSubsystem {
 	@Override
 	//Implemened - Tasid
 	public void submitOrder(ShoppingCart shopCart) throws BackendException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
 		try{
+			LOG.info("trying submit and save order");
 			DbClassOrder dbClass = new DbClassOrder(custProfile);
 			dbClass.submitOrder(shopCart);
 		}catch(DatabaseException de){
+			LOG.warning("Failed to save order");
 			throw new BackendException(de.getMessage());
 		
 		}
